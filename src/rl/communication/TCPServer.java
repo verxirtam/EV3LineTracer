@@ -25,8 +25,18 @@ public class TCPServer
 				BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 		)
 		{
+			
 			//クライアントへresultを送信する
-			out.write(resultreader.toString());
+			//1行分の文字列
+			String s;
+			//1行ずつ読み取りoutに格納する
+			while(null != (s = resultreader.readLine()))
+			{
+				//一行書き込み(改行以外)
+				out.write(s);
+				//改行書き込み
+				out.newLine();
+			}
 			//バッファの内容を書き込む
 			out.flush();
 		}
@@ -59,6 +69,12 @@ public class TCPServer
 	{
 		//MessageProcedureの初期化
 		MessageProcedure=new MessageProcedure();
+	}
+	//MessageProcedureを指定するコンストラクタ
+	public TCPServer(MessageProcedure m)
+	{
+		//MessageProcedureの初期化
+		MessageProcedure=m;
 	}
 	//サーバサービスの実行
 	public void ServerRun()

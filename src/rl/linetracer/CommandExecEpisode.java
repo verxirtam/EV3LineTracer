@@ -33,24 +33,27 @@ public class CommandExecEpisode implements Command
 			EV3LineTracer.ExecEpisode(e);
 			//結果の出力
 			//(失敗時は例外が起きているので以下の行が実行されているときは成功している)
-			result.write("OK\n");
+			result.write("OK");
+			result.newLine();
 			//ステップ数の出力
 			int stepcount=e.GetStepCount();
-			result.write(""+stepcount+"\n");
+			result.write(""+stepcount);
+			result.newLine();
 			//エピソード内の各ステップの出力
 			for(int m=0;m<stepcount;m++)
 			{
 				//ステップの取得
 				Step s=e.GetStep(m);
 				//ステップの出力
-				result.write(""+m+"\t"+s.State+"\t"+s.Control+"\t"+s.Cost+"\n");
-				
+				result.write(""+m+"\t"+s.State+"\t"+s.Control+"\t"+s.Cost);
+				result.newLine();
 			}
 		}
 		catch(Exception e)
 		{
 			//失敗時は「NG」とともにstacktraceを出力する
-			result.write("NG\n");
+			result.write("NG");
+			result.newLine();
 			e.printStackTrace(new PrintWriter(result));
 			//標準出力にも出力する
 			e.printStackTrace();

@@ -38,12 +38,14 @@ public class CommandSetMDP implements Command
 			ReadRegularPolicy(body);
 			
 			//結果をresultに格納
-			result.write("OK\n");
+			result.write("OK");
+			result.newLine();
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			result.write("NG\n");
+			result.write("NG");
+			result.newLine();
 			//StackTraceをresultに追加する
 			e.printStackTrace(new PrintWriter(result));
 			throw e;
