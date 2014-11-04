@@ -114,7 +114,7 @@ public class TCPServer
 			catch(Exception e){}
 		}
 	}
-	public void run(Socket socket)
+	public void run(Socket socket) throws IOException
 	{
 
 		
@@ -146,9 +146,10 @@ public class TCPServer
 				WriteSocketMessage(socket,resultreader);
 			}
 		}
-		catch (Exception e)
+		catch (IOException e)
 		{
 			System.out.println(e);
+			throw e;
 		}
 		
 	}
