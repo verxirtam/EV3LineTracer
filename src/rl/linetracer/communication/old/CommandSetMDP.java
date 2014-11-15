@@ -1,11 +1,12 @@
-package rl.linetracer;
+package rl.linetracer.communication.old;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import rl.communication.Command;
+import rl.communication.old.Command;
+import rl.linetracer.EV3LineTracer;
 
 public class CommandSetMDP implements Command
 {

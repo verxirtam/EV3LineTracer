@@ -1,13 +1,13 @@
-package rl.communication;
+package rl.communication.old;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 
-import rl.linetracer.CommandExecEpisode;
-import rl.linetracer.CommandSetPolicy;
 import rl.linetracer.EV3LineTracer;
-import rl.linetracer.CommandSetMDP;
+import rl.linetracer.communication.old.CommandExecEpisode;
+import rl.linetracer.communication.old.CommandSetMDP;
+import rl.linetracer.communication.old.CommandSetPolicy;
 
 public class MessageProcedure
 {

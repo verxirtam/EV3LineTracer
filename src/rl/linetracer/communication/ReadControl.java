@@ -1,0 +1,61 @@
+package rl.linetracer.communication;
+
+import rl.communication.message.context.MessageContext;
+import rl.linetracer.EV3LineTracer;
+
+// Controlを取得する
+//<Control>::=
+//	M(<SingleControl><endl>)
+//		;(Controlの定義 StateIndexは0からN-1まで順に並ぶ(N=StateCount)
+//		; ControlIndexは０からStateのControlCount-1まで順に並ぶ)
+//
+//<SingleControl>::=
+//	<StateIndex><tab>;StateIndex
+//	<ControlIndex><tab>;ControlIndex
+//	<LMotorSpeed><tab>;LMotorSpeed
+//	<RMotorSpeed>;RMotorSpeed
+class ReadControl extends MessageProcedure_EV3LineTracer_1_0
+{
+	public ReadControl(EV3LineTracer ev3)
+	{
+		super(ev3);
+	}
+
+	int StateIndex;
+	int ControlIndex;
+	int LMotorSpeed;
+	int RMotorSpeed;
+
+	public void setStateIndex(int i)
+	{
+		StateIndex = i;
+	}
+
+	public void setControlIndex(int j)
+	{
+		ControlIndex = j;
+
+	}
+
+	@Override
+	public void process(MessageContext context) throws Exception
+	{
+		// StateIndexの検証
+		if (StateIndex != Integer.parseInt(context.nextToken()))
+		{
+			throw new Exception(this.getClass().getName());
+		}
+		// ControlIndexの検証
+		if (ControlIndex != Integer.parseInt(context.nextToken()))
+		{
+			throw new Exception(this.getClass().getName());
+		}
+		// LMotorSpeedの取得
+		LMotorSpeed = Integer.parseInt(context.nextToken());
+		// LMotorSpeedの取得
+		RMotorSpeed = Integer.parseInt(context.nextToken());
+		// 改行
+		context.skipReturn();
+	}
+
+}

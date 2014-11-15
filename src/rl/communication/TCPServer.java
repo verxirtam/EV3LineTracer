@@ -10,6 +10,8 @@ import java.io.StringWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import rl.communication.old.MessageProcedure;
+
 public class TCPServer
 {
 	//TODO Serverとしての機能を実装する

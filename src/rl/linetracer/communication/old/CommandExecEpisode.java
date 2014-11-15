@@ -1,4 +1,4 @@
-package rl.linetracer;
+package rl.linetracer.communication.old;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -7,7 +7,8 @@ import java.io.PrintWriter;
 
 import rl.Episode;
 import rl.Step;
-import rl.communication.Command;
+import rl.communication.old.Command;
+import rl.linetracer.EV3LineTracer;
 
 //エピソードを実行するコマンド
 public class CommandExecEpisode implements Command
