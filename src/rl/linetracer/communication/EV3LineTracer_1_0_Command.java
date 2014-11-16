@@ -2,7 +2,6 @@ package rl.linetracer.communication;
 
 import rl.communication.message.MessageProcedure;
 import rl.communication.message.context.MessageContext;
-import rl.linetracer.EV3LineTracer;
 
 // コマンド
 // <Command>::=
@@ -15,13 +14,8 @@ import rl.linetracer.EV3LineTracer;
 // |
 // "ExecEpisode"<endl>;Episodeを実行
 // )
-public class EV3LineTracer_1_0_Command extends MessageProcedure_EV3LineTracer_1_0
+public class EV3LineTracer_1_0_Command implements MessageProcedure
 {
-
-	public EV3LineTracer_1_0_Command(EV3LineTracer ev3)
-	{
-		super(ev3);
-	}
 
 	@Override
 	public void process(MessageContext context) throws Exception
@@ -42,12 +36,12 @@ public class EV3LineTracer_1_0_Command extends MessageProcedure_EV3LineTracer_1_
 		// SetMDP
 		if (commandstring.equals("SetMDP"))
 		{
-			return new CommandSetMDPBody(this.getEV3LineTracer());
+			return new CommandSetMDPBody();
 		}
 		// ExecEpisode
 		if (commandstring.equals("ExecEpisode"))
 		{
-			return new CommandExecEpisode(this.getEV3LineTracer());
+			return new CommandExecEpisode();
 		}
 		// どのコマンドにも当てはまらない場合は例外を投げる
 		throw new Exception(this.getClass().getName());

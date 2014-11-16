@@ -2,8 +2,8 @@ package rl.linetracer.communication;
 
 import java.util.ArrayList;
 
+import rl.communication.message.MessageProcedure;
 import rl.communication.message.context.MessageContext;
-import rl.linetracer.EV3LineTracer;
 
 //RegularPolicyの読み取り
 //<RegularPolicy>::=
@@ -12,12 +12,8 @@ import rl.linetracer.EV3LineTracer;
 //<SinglePolicy>::=
 //	<StateIndex><tab>;StateIndex
 //	<ControlIndex>;ControlIndex
-class ReadRegularPolicy extends MessageProcedure_EV3LineTracer_1_0
+class ReadRegularPolicy implements MessageProcedure
 {
-	public ReadRegularPolicy(EV3LineTracer ev3)
-	{
-		super(ev3);
-	}
 
 
 	private int StateCount;

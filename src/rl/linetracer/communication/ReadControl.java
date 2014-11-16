@@ -1,7 +1,7 @@
 package rl.linetracer.communication;
 
+import rl.communication.message.MessageProcedure;
 import rl.communication.message.context.MessageContext;
-import rl.linetracer.EV3LineTracer;
 
 // Controlを取得する
 //<Control>::=
@@ -14,12 +14,9 @@ import rl.linetracer.EV3LineTracer;
 //	<ControlIndex><tab>;ControlIndex
 //	<LMotorSpeed><tab>;LMotorSpeed
 //	<RMotorSpeed>;RMotorSpeed
-class ReadControl extends MessageProcedure_EV3LineTracer_1_0
+class ReadControl implements MessageProcedure
 {
-	public ReadControl(EV3LineTracer ev3)
-	{
-		super(ev3);
-	}
+	
 
 	int StateIndex;
 	int ControlIndex;

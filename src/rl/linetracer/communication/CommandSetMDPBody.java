@@ -2,8 +2,8 @@ package rl.linetracer.communication;
 
 import java.util.ArrayList;
 
+import rl.communication.message.MessageProcedure;
 import rl.communication.message.context.MessageContext;
-import rl.linetracer.EV3LineTracer;
 
 // コマンドSetMDP
 //<SetMDPBody>::=
@@ -12,30 +12,24 @@ import rl.linetracer.EV3LineTracer;
 //	<State>;Stateの定義
 //	<Control>;Controlの定義(M=全てのStateの全てのControl数の合計)
 //	<RegularPolicy>;RegularPolicyの定義
-class CommandSetMDPBody extends MessageProcedure_EV3LineTracer_1_0
+class CommandSetMDPBody implements MessageProcedure
 {
-
-	public CommandSetMDPBody(EV3LineTracer ev3)
-	{
-		super(ev3);
-	}
 
 	@Override
 	public void process(MessageContext context) throws Exception
 	{
 
 		// インターバルの読み取り
-		new ReadInterval(this.getEV3LineTracer()).process(context);
+		new ReadInterval().process(context);
 		// 改行
 		context.skipReturn();
-		
+
 		// StateCountの読み取り
-		ReadStateCount rsc = new ReadStateCount(this.getEV3LineTracer());
+		ReadStateCount rsc = new ReadStateCount();
 		rsc.process(context);
 		// 改行
 		context.skipReturn();
 
-		
 		// StateCountの取得
 		int statecount = rsc.getStateCount();
 
@@ -43,7 +37,7 @@ class CommandSetMDPBody extends MessageProcedure_EV3LineTracer_1_0
 		ArrayList<Integer> controlcount = new ArrayList<Integer>();
 
 		// State読み取り用MessageProcedure
-		ReadState rs = new ReadState(this.getEV3LineTracer());
+		ReadState rs = new ReadState();
 		// 読み取ったStateCountの分だけ繰り返すループ
 		for (int i = 0; i < statecount; i++)
 		{
@@ -55,7 +49,7 @@ class CommandSetMDPBody extends MessageProcedure_EV3LineTracer_1_0
 			controlcount.add(rs.getControlCount());
 		}
 		// Control読み取り用MessageProcedure
-		ReadControl rc = new ReadControl(this.getEV3LineTracer());
+		ReadControl rc = new ReadControl();
 		for (int i = 0; i < statecount; i++)
 		{
 			// rsに読み取るStateIndexを設定
@@ -69,7 +63,7 @@ class CommandSetMDPBody extends MessageProcedure_EV3LineTracer_1_0
 			}
 		}
 		// RegularPolicyの読み取り
-		ReadRegularPolicy rrp = new ReadRegularPolicy(this.getEV3LineTracer());
+		ReadRegularPolicy rrp = new ReadRegularPolicy();
 		rrp.setStateCount(statecount);
 		rrp.setControlCount(controlcount);
 		rrp.process(context);

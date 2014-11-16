@@ -1,7 +1,7 @@
 package rl.linetracer.communication;
 
+import rl.communication.message.MessageProcedure;
 import rl.communication.message.context.MessageContext;
-import rl.linetracer.EV3LineTracer;
 
 // Stateを取得する
 //<State>::=N(<SingleState><endl>)
@@ -10,13 +10,9 @@ import rl.linetracer.EV3LineTracer;
 //	<StateIndex><tab>;StateIndex
 //	<RefMax><tab>;RefMax
 //	<ControlCount>;ControlCount
-class ReadState extends MessageProcedure_EV3LineTracer_1_0
+class ReadState implements MessageProcedure
 {
 
-	public ReadState(EV3LineTracer ev3)
-	{
-		super(ev3);
-	}
 
 	private int StateIndex;
 	private double RefMax;

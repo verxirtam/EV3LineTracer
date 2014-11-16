@@ -6,10 +6,8 @@ import rl.*;
 //TODO TEST
 public class EV3LineTracer
 {
-	public static void main(String[] args)
-	{
-		new EV3LineTracer().DoTest();
-	}
+	//EV3LineTracerの唯一のインスタンス
+	private static EV3LineTracer ev3 = new EV3LineTracer();
 	///////////////////////////////////////////
 	///////////////////////////////////////////
 	private int Interval=10;
@@ -23,14 +21,24 @@ public class EV3LineTracer
 	private boolean IsReady;
 	private long StartTime;
 	
-	
-	public EV3LineTracer()
+	//唯一のコンストラクタ
+	//Singletonにするため、privateにしている
+	private EV3LineTracer()
 	{
 		MC=new MachineControl();
 		State=null;
 		Control=null;
 		IsReady=false;
 	}
+	
+	//EV3LineTracerのインスタンスの取得
+	//このメソッドが最初に実行される際にインスタンスが生成される
+	public static EV3LineTracer getInstance()
+	{
+		return ev3;
+	}
+	
+	
 	public void TestInit()
 	{
 		//状態数

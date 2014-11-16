@@ -1,16 +1,12 @@
 package rl.linetracer.communication;
 
+import rl.communication.message.MessageProcedure;
 import rl.communication.message.context.MessageContext;
-import rl.linetracer.EV3LineTracer;
 
 // StateCountを取得する
 //<StateCount>::=DIGIT
-class ReadStateCount extends MessageProcedure_EV3LineTracer_1_0
+class ReadStateCount implements MessageProcedure
 {
-	public ReadStateCount(EV3LineTracer ev3)
-	{
-		super(ev3);
-	}
 
 	private int StateCount;
 
