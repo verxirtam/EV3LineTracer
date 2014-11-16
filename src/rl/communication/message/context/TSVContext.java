@@ -12,8 +12,6 @@ public class TSVContext implements MessageContext
 	String[] CurrentLine;
 	// CurrentLine上での現在位置
 	int CurrentIndex;
-	// 処理対象オブジェクト
-	Object Target;
 
 	// 現在行を次の行に移す
 	// 行末に達しているかどうかのチェックは行わない
@@ -32,12 +30,11 @@ public class TSVContext implements MessageContext
 		CurrentIndex = -1;
 	}
 
-	public TSVContext(BufferedReader br, Object target) throws IOException
+	public TSVContext(BufferedReader br) throws IOException
 	{
 		MessageReader = br;
 		newLine();
 
-		Target = target;
 	}
 
 	@Override
@@ -98,10 +95,5 @@ public class TSVContext implements MessageContext
 		return CurrentIndex != (CurrentLine.length - 1);
 	}
 
-	@Override
-	public Object getTarget()
-	{
-		return Target;
-	}
 
 }

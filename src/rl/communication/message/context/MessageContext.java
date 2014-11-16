@@ -16,6 +16,4 @@ public interface MessageContext
 	// 現在の行で次のTokenがあるかどうかを確認する
 	boolean hasNextToken();
 
-	// 呼び出し元オブジェクトを取得する
-	Object getTarget();
 }
