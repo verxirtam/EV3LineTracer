@@ -1,6 +1,7 @@
 package rl.communication.message;
 
 import rl.communication.message.context.MessageInputContext;
+import rl.communication.message.context.MessageOutputContext;
 
 // メッセージ全体
 //<Message>::=<MessageVersion><endl> ;メッセージのバージョン
@@ -9,16 +10,16 @@ import rl.communication.message.context.MessageInputContext;
 class Message implements MessageProcedure
 {
 	@Override
-	public void process(MessageInputContext context) throws Exception
+	public void process(MessageInputContext input, MessageOutputContext output) throws Exception
 	{
 		// メッセージの識別子
-		MessageProcedure mb = getMessgeBody(context.nextToken());
+		MessageProcedure mb = getMessgeBody(input.nextToken());
 		// 改行
-		context.skipReturn();
+		input.skipReturn();
 		// メッセージ本体の処理
-		mb.process(context);
+		mb.process(input,output);
 		// 空行のチェック
-		context.skipToken("");
+		input.skipToken("");
 	}
 
 	private MessageProcedure getMessgeBody(String version_string) throws Exception

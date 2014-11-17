@@ -1,6 +1,7 @@
 package rl.communication.message;
 
 import rl.communication.message.context.MessageInputContext;
+import rl.communication.message.context.MessageOutputContext;
 import rl.linetracer.communication.EV3LineTracer_1_0_Command;
 
 // メッセージ本体
@@ -14,15 +15,15 @@ class Message_1_0_Body implements MessageProcedure
 {
 
 	@Override
-	public void process(MessageInputContext context) throws Exception
+	public void process(MessageInputContext input, MessageOutputContext output) throws Exception
 	{
 		// バージョン
 		//context.skipToken("EV3LineTracer_1.0");
-		MessageProcedure com=getMessageCommand(context,context.nextToken());
+		MessageProcedure com=getMessageCommand(input,input.nextToken());
 		// 改行
-		context.skipReturn();
+		input.skipReturn();
 		// コマンドの処理
-		com.process(context);
+		com.process(input,output);
 	}
 
 	private MessageProcedure getMessageCommand(MessageInputContext context, String version_string) throws Exception

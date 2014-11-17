@@ -2,6 +2,7 @@ package rl.linetracer.communication;
 
 import rl.communication.message.MessageProcedure;
 import rl.communication.message.context.MessageInputContext;
+import rl.communication.message.context.MessageOutputContext;
 
 // コマンド
 // <Command>::=
@@ -18,15 +19,16 @@ public class EV3LineTracer_1_0_Command implements MessageProcedure
 {
 
 	@Override
-	public void process(MessageInputContext context) throws Exception
+	public void process(MessageInputContext input, MessageOutputContext output)
+			throws Exception
 	{
 		// コマンド文字列の取得
-		String commandstring = context.nextToken();
+		String commandstring = input.nextToken();
 		// 改行
-		context.skipReturn();
+		input.skipReturn();
 
 		// コマンドの取得と実行
-		createCommand(commandstring).process(context);
+		createCommand(commandstring).process(input, output);
 
 	}
 

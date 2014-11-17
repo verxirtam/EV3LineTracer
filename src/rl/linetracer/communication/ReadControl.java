@@ -2,6 +2,7 @@ package rl.linetracer.communication;
 
 import rl.communication.message.MessageProcedure;
 import rl.communication.message.context.MessageInputContext;
+import rl.communication.message.context.MessageOutputContext;
 
 // Controlを取得する
 //<Control>::=
@@ -35,24 +36,24 @@ class ReadControl implements MessageProcedure
 	}
 
 	@Override
-	public void process(MessageInputContext context) throws Exception
+	public void process(MessageInputContext input, MessageOutputContext output) throws Exception
 	{
 		// StateIndexの検証
-		if (StateIndex != Integer.parseInt(context.nextToken()))
+		if (StateIndex != Integer.parseInt(input.nextToken()))
 		{
 			throw new Exception(this.getClass().getName());
 		}
 		// ControlIndexの検証
-		if (ControlIndex != Integer.parseInt(context.nextToken()))
+		if (ControlIndex != Integer.parseInt(input.nextToken()))
 		{
 			throw new Exception(this.getClass().getName());
 		}
 		// LMotorSpeedの取得
-		LMotorSpeed = Integer.parseInt(context.nextToken());
+		LMotorSpeed = Integer.parseInt(input.nextToken());
 		// LMotorSpeedの取得
-		RMotorSpeed = Integer.parseInt(context.nextToken());
+		RMotorSpeed = Integer.parseInt(input.nextToken());
 		// 改行
-		context.skipReturn();
+		input.skipReturn();
 	}
 
 }

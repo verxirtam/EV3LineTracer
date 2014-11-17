@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import rl.communication.message.MessageProcedure;
 import rl.communication.message.context.MessageInputContext;
+import rl.communication.message.context.MessageOutputContext;
 
 //RegularPolicyの読み取り
 //<RegularPolicy>::=
@@ -38,21 +39,21 @@ class ReadRegularPolicy implements MessageProcedure
 
 	
 	@Override
-	public void process(MessageInputContext context) throws Exception
+	public void process(MessageInputContext input, MessageOutputContext output) throws Exception
 	{
 		for (int i = 0; i < StateCount; i++)
 		{
-			if (i != Integer.parseInt(context.nextToken()))
+			if (i != Integer.parseInt(input.nextToken()))
 			{
 				throw new Exception(this.getClass().getName());
 			}
-			int j=Integer.parseInt(context.nextToken());
+			int j=Integer.parseInt(input.nextToken());
 			if(j<0 || ControlCount.get(i)<=j)
 			{
 				throw new Exception(this.getClass().getName());
 			}
 			// (i,j)をRegularPolicyとしてセットする
-			context.skipReturn();
+			input.skipReturn();
 		}
 	}
 

@@ -12,6 +12,7 @@ import java.net.Socket;
 
 import rl.communication.message.MessageProcedure;
 import rl.communication.message.context.TSVInputContext;
+import rl.communication.message.context.TSVOutputContext;
 
 public class TCPServer
 {
@@ -122,11 +123,13 @@ public class TCPServer
 			// resultにバージョンを記入
 			WriteVersion(resultwriter);
 			// 受信メッセージ読み取り用Contextの初期化
-			TSVInputContext tsvc = new TSVInputContext(messagebodyreader);
-
+			TSVInputContext tsvinc = new TSVInputContext(messagebodyreader);
+			// 返信メッセージ書き込み用Contextの初期化
+			TSVOutputContext tsvoutc= new TSVOutputContext(resultwriter);
+			
 			// MessageProcedureにmessagebodyreaderを渡しコマンド実行
 			// TODO 返信用メッセージ作成の処理追加
-			MessageProcedure.process(tsvc);
+			MessageProcedure.process(tsvinc,tsvoutc);
 
 			// resultに空行を付与してメッセージを完成させる
 			resultwriter.newLine();

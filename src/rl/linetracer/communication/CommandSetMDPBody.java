@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import rl.communication.message.MessageProcedure;
 import rl.communication.message.context.MessageInputContext;
+import rl.communication.message.context.MessageOutputContext;
 
 // コマンドSetMDP
 //<SetMDPBody>::=
@@ -16,19 +17,19 @@ class CommandSetMDPBody implements MessageProcedure
 {
 
 	@Override
-	public void process(MessageInputContext context) throws Exception
+	public void process(MessageInputContext input, MessageOutputContext output) throws Exception
 	{
 
 		// インターバルの読み取り
-		new ReadInterval().process(context);
+		new ReadInterval().process(input,output);
 		// 改行
-		context.skipReturn();
+		input.skipReturn();
 
 		// StateCountの読み取り
 		ReadStateCount rsc = new ReadStateCount();
-		rsc.process(context);
+		rsc.process(input,output);
 		// 改行
-		context.skipReturn();
+		input.skipReturn();
 
 		// StateCountの取得
 		int statecount = rsc.getStateCount();
@@ -44,7 +45,7 @@ class CommandSetMDPBody implements MessageProcedure
 			// rsに読み取るStateIndexを設定
 			rs.setStateIndex(i);
 			// Stateの読み取り
-			rs.process(context);
+			rs.process(input,output);
 			// 取得したControlCountを保持
 			controlcount.add(rs.getControlCount());
 		}
@@ -59,13 +60,13 @@ class CommandSetMDPBody implements MessageProcedure
 				// rsに読み取るControlIndexを設定
 				rc.setControlIndex(j);
 				// Controlの読み取り
-				rc.process(context);
+				rc.process(input,output);
 			}
 		}
 		// RegularPolicyの読み取り
 		ReadRegularPolicy rrp = new ReadRegularPolicy();
 		rrp.setStateCount(statecount);
 		rrp.setControlCount(controlcount);
-		rrp.process(context);
+		rrp.process(input,output);
 	}
 }

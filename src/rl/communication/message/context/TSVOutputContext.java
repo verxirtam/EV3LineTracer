@@ -11,7 +11,7 @@ public class TSVOutputContext implements MessageOutputContext
 	//書き込み先
 	BufferedWriter MessageWriter;
 
-	TSVOutputContext(BufferedWriter bw)
+	public TSVOutputContext(BufferedWriter bw)
 	{
 		MessageWriter=bw;
 		atHeadOfLine = true;
