@@ -2,7 +2,7 @@ package rl.communication.message.context;
 
 //改行単位でTokenを読み取る
 //行末まで来たらskipReturn()で次の行に進む必要がある。
-public interface MessageContext
+public interface MessageInputContext
 {
 	// 次のTokenを取得し現在のTokenを1つ進める
 	String nextToken() throws Exception;

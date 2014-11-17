@@ -1,6 +1,6 @@
 package rl.communication.message;
 
-import rl.communication.message.context.MessageContext;
+import rl.communication.message.context.MessageInputContext;
 
 // メッセージ全体
 //<Message>::=<MessageVersion><endl> ;メッセージのバージョン
@@ -9,7 +9,7 @@ import rl.communication.message.context.MessageContext;
 class Message implements MessageProcedure
 {
 	@Override
-	public void process(MessageContext context) throws Exception
+	public void process(MessageInputContext context) throws Exception
 	{
 		// メッセージの識別子
 		MessageProcedure mb = getMessgeBody(context.nextToken());

@@ -1,7 +1,7 @@
 package rl.linetracer.communication;
 
 import rl.communication.message.MessageProcedure;
-import rl.communication.message.context.MessageContext;
+import rl.communication.message.context.MessageInputContext;
 
 // コマンド
 // <Command>::=
@@ -18,7 +18,7 @@ public class EV3LineTracer_1_0_Command implements MessageProcedure
 {
 
 	@Override
-	public void process(MessageContext context) throws Exception
+	public void process(MessageInputContext context) throws Exception
 	{
 		// コマンド文字列の取得
 		String commandstring = context.nextToken();

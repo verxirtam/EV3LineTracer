@@ -1,7 +1,7 @@
 package rl.linetracer.communication;
 
 import rl.communication.message.MessageProcedure;
-import rl.communication.message.context.MessageContext;
+import rl.communication.message.context.MessageInputContext;
 
 // Intervalを取得する
 //<Interval>::=DIGIT
@@ -17,7 +17,7 @@ class ReadInterval implements MessageProcedure
 	}
 
 	@Override
-	public void process(MessageContext context) throws Exception
+	public void process(MessageInputContext context) throws Exception
 	{
 		// Intervalを取得
 		Interval = Integer.parseInt(context.nextToken());

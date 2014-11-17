@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 
 // タブ区切りのメッセージ
-public class TSVContext implements MessageContext
+public class TSVInputContext implements MessageInputContext
 {
 	// メッセージを保持するBufferedReader
 	BufferedReader MessageReader;
@@ -30,7 +30,7 @@ public class TSVContext implements MessageContext
 		CurrentIndex = -1;
 	}
 
-	public TSVContext(BufferedReader br) throws IOException
+	public TSVInputContext(BufferedReader br) throws IOException
 	{
 		MessageReader = br;
 		newLine();

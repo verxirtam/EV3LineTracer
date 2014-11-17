@@ -11,7 +11,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 import rl.communication.message.MessageProcedure;
-import rl.communication.message.context.TSVContext;
+import rl.communication.message.context.TSVInputContext;
 
 public class TCPServer
 {
@@ -122,7 +122,7 @@ public class TCPServer
 			// resultにバージョンを記入
 			WriteVersion(resultwriter);
 			// 受信メッセージ読み取り用Contextの初期化
-			TSVContext tsvc = new TSVContext(messagebodyreader);
+			TSVInputContext tsvc = new TSVInputContext(messagebodyreader);
 
 			// MessageProcedureにmessagebodyreaderを渡しコマンド実行
 			// TODO 返信用メッセージ作成の処理追加

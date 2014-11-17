@@ -3,7 +3,7 @@ package rl.linetracer.communication;
 import java.util.ArrayList;
 
 import rl.communication.message.MessageProcedure;
-import rl.communication.message.context.MessageContext;
+import rl.communication.message.context.MessageInputContext;
 
 //RegularPolicyの読み取り
 //<RegularPolicy>::=
@@ -38,7 +38,7 @@ class ReadRegularPolicy implements MessageProcedure
 
 	
 	@Override
-	public void process(MessageContext context) throws Exception
+	public void process(MessageInputContext context) throws Exception
 	{
 		for (int i = 0; i < StateCount; i++)
 		{

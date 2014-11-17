@@ -1,7 +1,7 @@
 package rl.linetracer.communication;
 
 import rl.communication.message.MessageProcedure;
-import rl.communication.message.context.MessageContext;
+import rl.communication.message.context.MessageInputContext;
 
 // Stateを取得する
 //<State>::=N(<SingleState><endl>)
@@ -24,7 +24,7 @@ class ReadState implements MessageProcedure
 	}
 
 	@Override
-	public void process(MessageContext context) throws Exception
+	public void process(MessageInputContext context) throws Exception
 	{
 		// StateIndexの検証
 		if (StateIndex != Integer.parseInt(context.nextToken()))
