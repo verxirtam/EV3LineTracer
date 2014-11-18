@@ -9,8 +9,12 @@ import rl.linetracer.communication.EV3LineTracer_1_0_Command;
 // <Version> ;バージョン
 // <Command>|<Result> ;コマンド|コマンドの結果
 // /////////////////////////////////////////////
-// <Result>は現状実装予定なし(Output専用)
-// EV3はコマンドを受け付けて結果を出力するのみの予定
+//出力用
+//===================================
+//メッセージ全体
+//<Message>::="MESSAGE_1.0"<endl> ;メッセージのバージョン
+//<MessageBody>;メッセージ本体
+//<endl>;空行
 class Message_1_0_Body implements MessageProcedure
 {
 
@@ -18,10 +22,14 @@ class Message_1_0_Body implements MessageProcedure
 	public void process(MessageInputContext input, MessageOutputContext output) throws Exception
 	{
 		// バージョン
-		//context.skipToken("EV3LineTracer_1.0");
 		MessageProcedure com=getMessageCommand(input,input.nextToken());
 		// 改行
 		input.skipReturn();
+		
+		//返信用メッセージ作成
+		output.writeToken("MESSAGE_1.0");
+		output.newLine();
+		
 		// コマンドの処理
 		com.process(input,output);
 	}

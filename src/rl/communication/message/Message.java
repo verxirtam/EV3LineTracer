@@ -7,6 +7,10 @@ import rl.communication.message.context.MessageOutputContext;
 //<Message>::=<MessageVersion><endl> ;メッセージのバージョン
 //<MessageBody>;メッセージ本体
 //<endl>;空行
+//
+//出力用
+//===================================
+//
 class Message implements MessageProcedure
 {
 	@Override
@@ -20,6 +24,9 @@ class Message implements MessageProcedure
 		mb.process(input,output);
 		// 空行のチェック
 		input.skipToken("");
+		
+		//空行の入力
+		output.newLine();
 	}
 
 	private MessageProcedure getMessgeBody(String version_string) throws Exception

@@ -15,6 +15,9 @@ import rl.communication.message.context.MessageOutputContext;
 // |
 // "ExecEpisode"<endl>;Episodeを実行
 // )
+//出力用
+//===================================
+//
 public class EV3LineTracer_1_0_Command implements MessageProcedure
 {
 
