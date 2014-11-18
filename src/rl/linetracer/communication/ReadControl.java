@@ -3,6 +3,7 @@ package rl.linetracer.communication;
 import rl.communication.message.MessageProcedure;
 import rl.communication.message.context.MessageInputContext;
 import rl.communication.message.context.MessageOutputContext;
+import rl.linetracer.EV3LineTracer;
 
 // Controlを取得する
 //<Control>::=
@@ -17,12 +18,9 @@ import rl.communication.message.context.MessageOutputContext;
 //	<RMotorSpeed>;RMotorSpeed
 class ReadControl implements MessageProcedure
 {
-	
 
 	int StateIndex;
 	int ControlIndex;
-	int LMotorSpeed;
-	int RMotorSpeed;
 
 	public void setStateIndex(int i)
 	{
@@ -36,8 +34,12 @@ class ReadControl implements MessageProcedure
 	}
 
 	@Override
-	public void process(MessageInputContext input, MessageOutputContext output) throws Exception
+	public void process(MessageInputContext input, MessageOutputContext output)
+			throws Exception
 	{
+		// EV3LineTracer(Singleton)を取得
+		EV3LineTracer ev3 = EV3LineTracer.getInstance();
+
 		// StateIndexの検証
 		if (StateIndex != Integer.parseInt(input.nextToken()))
 		{
@@ -49,11 +51,14 @@ class ReadControl implements MessageProcedure
 			throw new Exception(this.getClass().getName());
 		}
 		// LMotorSpeedの取得
-		LMotorSpeed = Integer.parseInt(input.nextToken());
+		int l_motor_speed = Integer.parseInt(input.nextToken());
 		// LMotorSpeedの取得
-		RMotorSpeed = Integer.parseInt(input.nextToken());
+		int r_motor_speed = Integer.parseInt(input.nextToken());
 		// 改行
 		input.skipReturn();
+
+		// Controlの設定
+		ev3.SetControl(StateIndex, ControlIndex, l_motor_speed, r_motor_speed);
 	}
 
 }

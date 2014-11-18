@@ -3,6 +3,7 @@ package rl.linetracer.communication;
 import rl.communication.message.MessageProcedure;
 import rl.communication.message.context.MessageInputContext;
 import rl.communication.message.context.MessageOutputContext;
+import rl.linetracer.EV3LineTracer;
 
 // Stateを取得する
 //<State>::=N(<SingleState><endl>)
@@ -14,9 +15,7 @@ import rl.communication.message.context.MessageOutputContext;
 class ReadState implements MessageProcedure
 {
 
-
 	private int StateIndex;
-	private double RefMax;
 	private int ControlCount;
 
 	public void setStateIndex(int stateindex)
@@ -25,29 +24,32 @@ class ReadState implements MessageProcedure
 	}
 
 	@Override
-	public void process(MessageInputContext input, MessageOutputContext output) throws Exception
+	public void process(MessageInputContext input, MessageOutputContext output)
+			throws Exception
 	{
+		// EV3LineTracer(Singleton)を取得
+		EV3LineTracer ev3 = EV3LineTracer.getInstance();
+
 		// StateIndexの検証
 		if (StateIndex != Integer.parseInt(input.nextToken()))
 		{
 			throw new Exception(this.getClass().getName());
 		}
 		// RefMaxの取得
-		RefMax = Double.parseDouble(input.nextToken());
+		double refmax = Double.parseDouble(input.nextToken());
 		// ControlCountの取得
 		ControlCount = Integer.parseInt(input.nextToken());
 		// 改行
 		input.skipReturn();
+
+		// Stateの設定
+		ev3.SetState(StateIndex, refmax, ControlCount);
+
 	}
 
 	public int getControlCount()
 	{
 		return ControlCount;
-	}
-
-	public double getRefMax()
-	{
-		return RefMax;
 	}
 
 }
