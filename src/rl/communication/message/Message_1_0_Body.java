@@ -5,7 +5,7 @@ import rl.communication.message.context.MessageOutputContext;
 import rl.linetracer.communication.EV3LineTracer_1_0_Command;
 
 // メッセージ本体
-// <MessageBody>:
+// <MessageBody>:　; TODO MessageIDをつけるか検討する
 // <Version> ;バージョン
 // <Command>|<Result> ;コマンド|コマンドの結果
 // /////////////////////////////////////////////
