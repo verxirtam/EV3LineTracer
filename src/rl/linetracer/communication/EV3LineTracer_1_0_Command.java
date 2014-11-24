@@ -20,7 +20,9 @@ import rl.communication.message.context.MessageOutputContext;
 //
 public class EV3LineTracer_1_0_Command implements MessageProcedure
 {
-
+	public static String RESULT_OK="OK";
+	public static String RESULT_NG="NG";
+	
 	@Override
 	public void process(MessageInputContext input, MessageOutputContext output)
 			throws Exception

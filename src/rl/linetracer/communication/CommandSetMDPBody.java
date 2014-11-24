@@ -13,6 +13,10 @@ import rl.communication.message.context.MessageOutputContext;
 //	<State>;Stateの定義
 //	<Control>;Controlの定義(M=全てのStateの全てのControl数の合計)
 //	<RegularPolicy>;RegularPolicyの定義
+//出力用
+//===================================
+//<Result>::="OK"|"NG"
+// TODO NGのケースを記述する
 class CommandSetMDPBody implements MessageProcedure
 {
 
@@ -68,5 +72,9 @@ class CommandSetMDPBody implements MessageProcedure
 		rrp.setStateCount(statecount);
 		rrp.setControlCount(controlcount);
 		rrp.process(input,output);
+		
+		//出力の設定
+		output.writeToken(EV3LineTracer_1_0_Command.RESULT_OK);
+		output.newLine();
 	}
 }
