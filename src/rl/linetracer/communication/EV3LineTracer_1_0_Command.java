@@ -14,6 +14,8 @@ import rl.communication.message.context.MessageOutputContext;
 // <SetPolicyBody><endl>;コマンドの内容
 // |
 // "ExecEpisode"<endl>;Episodeを実行
+// |
+// "NullCommand"<endl>;Episodeを実行
 // )
 //出力用
 //===================================
@@ -49,6 +51,11 @@ public class EV3LineTracer_1_0_Command implements MessageProcedure
 		if (commandstring.equals("ExecEpisode"))
 		{
 			return new CommandExecEpisode();
+		}
+		// NullCommand
+		if (commandstring.equals("NullCommand"))
+		{
+			return new CommandNullCommand();
 		}
 		// どのコマンドにも当てはまらない場合は例外を投げる
 		throw new Exception(this.getClass().getName());

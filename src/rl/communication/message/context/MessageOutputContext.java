@@ -6,5 +6,6 @@ public interface MessageOutputContext
 {
 	public void writeToken(String s) throws IOException;
 	public void newLine() throws IOException;
+	public void flush() throws IOException;
 	
 }

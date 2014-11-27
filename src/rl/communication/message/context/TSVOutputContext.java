@@ -55,4 +55,10 @@ public class TSVOutputContext implements MessageOutputContext
 
 	}
 
+	@Override
+	public void flush() throws IOException
+	{
+		MessageWriter.flush();
+	}
+
 }

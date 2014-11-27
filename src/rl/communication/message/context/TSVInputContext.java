@@ -37,6 +37,7 @@ public class TSVInputContext implements MessageInputContext
 
 	}
 
+	// 次のTokenを取得し現在のTokenを1つ進める
 	@Override
 	public String nextToken() throws Exception
 	{
@@ -52,6 +53,7 @@ public class TSVInputContext implements MessageInputContext
 		return CurrentLine[CurrentIndex];
 	}
 
+	// 次のTokenがskipStringであることを確認し現在のTokenを1つ進める
 	@Override
 	public void skipToken(String skipString) throws Exception
 	{
@@ -74,6 +76,7 @@ public class TSVInputContext implements MessageInputContext
 
 	}
 
+	// 次のTokenが行末であることを確認し現在のTokenを次の行の初めに進める
 	@Override
 	public void skipReturn() throws Exception
 	{
@@ -88,12 +91,12 @@ public class TSVInputContext implements MessageInputContext
 
 	}
 
+	// 現在の行で次のTokenがあるかどうかを確認する
 	@Override
 	public boolean hasNextToken()
 	{
 		// 現在行で次のTokenがあるかを返却する(Tokenがあるならtrue)
 		return CurrentIndex != (CurrentLine.length - 1);
 	}
-
 
 }

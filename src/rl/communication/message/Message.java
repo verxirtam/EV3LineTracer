@@ -27,6 +27,7 @@ class Message implements MessageProcedure
 		
 		//空行の入力
 		output.newLine();
+		output.flush();
 	}
 
 	private MessageProcedure getMessgeBody(String version_string) throws Exception
