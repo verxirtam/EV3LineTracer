@@ -11,15 +11,36 @@
 <Command>::=
 (
 	"SetMDP"<endl>;MDPを設定
-	<SetMDPBody><endl>;コマンドの内容
+	(
+		<SetMDPBody>;コマンドの内容
+		|
+		<SetMDPResult>;コマンドの結果
+	)
 	|
 	"SetPolicy"<endl>;MDPを設定
-	<SetPolicyBody><endl>;コマンドの内容
+	(
+		<SetPolicyBody>;コマンドの内容
+		|
+		<SetPolicyResult>;コマンドの結果
+	)
 	|
 	"ExecEpisode"<endl>;Episodeを実行
+	(
+		<Null>;コマンドの内容(無し)
+		|
+		<ExecEpisodeResult>;コマンドの結果
+	)
 	|
-	"NullCommand"<endl>;何もしない
+	"NullCommand"<endl>;何もしないコマンド
+	(
+		<Null>;コマンドの内容(無し)
+		|
+		<NullCommandResult>;コマンドの結果
+	)
 )					
+
+<Null>::="";空文字列
+
 
 <SetMDPBody>::=
 	<Interval><endl>;Interval(msec)
@@ -46,10 +67,10 @@
 		   ControlIndexは０からStateのControlCount-1まで順に並ぶ)
 
 <SingleControl>::=
-	<StateIndex><tab>;StateIndex
-	<ControlIndex><tab>;ControlIndex
-	<LMotorSpeed><tab>;LMotorSpeed
-	<RMotorSpeed>;RMotorSpeed
+	<StateIndex><tab>		;StateIndex
+	<ControlIndex><tab>	;ControlIndex
+	<LMotorSpeed><tab>	;LMotorSpeed
+	<RMotorSpeed>			;RMotorSpeed
 
 <ControlIndex>::=DIGIT
 <LMotorSpeed>::=DIGIT
@@ -62,13 +83,55 @@
 	<StateIndex><tab>;StateIndex
 	<ControlIndex>;ControlIndex
 
+<SetMDPResult>::=
+	(
+		"OK"<endl>
+		|
+		(
+			"NG"<endl>
+			<Reason>
+		)
+	)
 
-<Result>::=
-"OK"|"NG"<endl>
-<ResultBody><endl>
+<ExecEpisodeResult>::=
+(
+	"OK"<endl>
+	<EpisodeBody>
+	|
+	"NG"<endl>
+	<Reason>
+)
 
-<ResultBody>::=
-<任意の文字列((空行は含まない)かつ(末尾は<endl>でない))><endl>
+<EpisodeBody>::=
+	<StepCount><endl>
+	N(<SingleStep><endl>)	;NはStepCountの値
+
+<StepCount>::=DIGIT
+
+<SingleStep>::=
+	<EpisodeIndex><tab>
+	<State><tab>
+	<Control><tab>
+	<Cost>
+
+<EpisodeIndex>::=DIGIT
+<State>::=DIGIT
+<Control>::=DIGIT
+<Cost>::=DIGIT"."DIGIT
+
+
+<Reason>::=(発生した例外のStackTrace)
+
+
+
+<NullCommandResult>="OK"
+
+
+
+
+/////////////////////////////////////////////////////
+/////////////////////////////////////////////////////
+/////////////////////////////////////////////////////
 
 
 Messageのフォーマット

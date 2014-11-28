@@ -5,20 +5,53 @@ import rl.communication.message.context.MessageInputContext;
 import rl.communication.message.context.MessageOutputContext;
 
 // コマンド
-// <Command>::=
-// (
-// "SetMDP"<endl>;MDPを設定
-// <SetMDPBody><endl>;コマンドの内容
-// |
-// "SetPolicy"<endl>;MDPを設定
-// <SetPolicyBody><endl>;コマンドの内容
-// |
-// "ExecEpisode"<endl>;Episodeを実行
-// |
-// "NullCommand"<endl>;Episodeを実行
-// )
+//入力用
+//===================================
+//<Command>::=
+//(
+//	(
+//		"SetMDP"<endl>;MDPを設定
+//		<SetMDPBody>;コマンドの内容
+//	)
+//	|
+//	(
+//		"SetPolicy"<endl>;MDPを設定
+//		<SetPolicyBody>;コマンドの内容
+//	)
+//	|
+//	(
+//		"ExecEpisode"<endl>;Episodeを実行
+//		<Null>;コマンドの内容(無し)
+//	)
+//	|
+//	(
+//		"NullCommand"<endl>;何もしないコマンド
+//		<Null>;コマンドの内容(無し)
+//	)
+//)
 //出力用
 //===================================
+//<Command>::=
+//(
+//	"SetMDP"<endl>;MDPを設定
+//	<SetMDPResult>;コマンドの結果
+//)
+//|
+//(
+//	"SetPolicy"<endl>;MDPを設定
+//	<SetPolicyResult>;コマンドの結果
+//)
+//|
+//(
+//	"ExecEpisode"<endl>;Episodeを実行
+//	<ExecEpisodeResult>;コマンドの結果
+//)
+//|
+//(
+//	"NullCommand"<endl>;何もしない
+//	<NullCommandResult>;コマンドの結果
+//)
+//)
 //
 public class EV3LineTracer_1_0_Command implements MessageProcedure
 {
