@@ -24,7 +24,10 @@ public class TSVInputContext implements MessageInputContext
 		// バッファの最後に達したか確認
 		if (newline == null)
 		{
-			throw new IOException("End of Buffer.");
+			//throw new IOException("End of Buffer.");
+			//バッファの最後に達した場合はからのToken列を設定する
+			CurrentLine = new String[0];
+			return;
 		}
 		// 取得した行をタブ区切りに分割
 		CurrentLine = newline.split("\t");
@@ -90,7 +93,6 @@ public class TSVInputContext implements MessageInputContext
 		}
 		// 次の行に進む
 		newLine();
-
 	}
 
 	// 現在の行で次のTokenがあるかどうかを確認する

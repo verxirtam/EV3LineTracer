@@ -55,9 +55,9 @@ import rl.communication.message.context.MessageOutputContext;
 //
 public class EV3LineTracer_1_0_Command implements MessageProcedure
 {
-	public static String RESULT_OK="OK";
-	public static String RESULT_NG="NG";
-	
+	public static String RESULT_OK = "OK";
+	public static String RESULT_NG = "NG";
+
 	@Override
 	public void process(MessageInputContext input, MessageOutputContext output)
 			throws Exception
@@ -67,26 +67,29 @@ public class EV3LineTracer_1_0_Command implements MessageProcedure
 		// 改行
 		input.skipReturn();
 
-		// コマンドの取得と実行
-		createCommand(commandstring).process(input, output);
+		// コマンドの取得
+		MessageProcedure com = createCommand(commandstring);
+		//コマンドの実行
+		com.process(input, output);
 
 	}
 
 	// コマンド文字列に応じたコマンドの生成
-	MessageProcedure createCommand(String commandstring) throws Exception
+	MessageProcedure createCommand(String commandstring)
+			throws Exception
 	{
 		// SetMDP
-		if (commandstring.equals("SetMDP"))
+		if (commandstring.equals(CommandSetMDPBody.COMMAND_STRING))
 		{
 			return new CommandSetMDPBody();
 		}
 		// ExecEpisode
-		if (commandstring.equals("ExecEpisode"))
+		if (commandstring.equals(CommandExecEpisode.COMMAND_STRING))
 		{
 			return new CommandExecEpisode();
 		}
 		// NullCommand
-		if (commandstring.equals("NullCommand"))
+		if (commandstring.equals(CommandNullCommand.COMMAND_STRING))
 		{
 			return new CommandNullCommand();
 		}

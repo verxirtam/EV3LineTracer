@@ -34,20 +34,20 @@ import rl.linetracer.EV3LineTracer;
 //)
 class CommandExecEpisode implements MessageProcedure
 {
-
+	public static final String COMMAND_STRING = "ExecEpisode";
 	@Override
 	public void process(MessageInputContext input, MessageOutputContext output)
 			throws Exception
 	{
 		EV3LineTracer ev3 = EV3LineTracer.getInstance();
-		
+
 		Episode e = new Episode();
 		ev3.ExecEpisode(e);
-		
+
 		outputEpisode(e, output);
 	}
-	
-	private void outputEpisode(Episode e,MessageOutputContext output)
+
+	private void outputEpisode(Episode e, MessageOutputContext output)
 	{
 		// TODO outputへの出力処理を記入する
 	}

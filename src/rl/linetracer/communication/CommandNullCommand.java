@@ -15,20 +15,24 @@ import rl.communication.message.context.MessageOutputContext;
 //
 //出力用
 //===================================
+//"NullCommand"
 //<NullCommandResult>;コマンドの結果
 //
 //<NullCommandResult>="OK"
 //
 public class CommandNullCommand implements MessageProcedure
 {
+	public static final String COMMAND_STRING = "NullCommand";
 
 	@Override
 	public void process(MessageInputContext input, MessageOutputContext output)
 			throws Exception
 	{
-		//inputに対して何も読み取らない
-		
-		//outputに対してはRESULT_OKを出力する
+		// inputに対して何も読み取らない
+
+		// outputに対してはRESULT_OKを出力する
+		output.writeToken(COMMAND_STRING);
+		output.newLine();
 		output.writeToken(EV3LineTracer_1_0_Command.RESULT_OK);
 		output.newLine();
 	}

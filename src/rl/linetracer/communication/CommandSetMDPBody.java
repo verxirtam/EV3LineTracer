@@ -19,19 +19,20 @@ import rl.communication.message.context.MessageOutputContext;
 // TODO NGのケースを記述する
 class CommandSetMDPBody implements MessageProcedure
 {
-
+	public static final String COMMAND_STRING = "SetMDP";
 	@Override
-	public void process(MessageInputContext input, MessageOutputContext output) throws Exception
+	public void process(MessageInputContext input, MessageOutputContext output)
+			throws Exception
 	{
 
 		// インターバルの読み取り
-		new ReadInterval().process(input,output);
+		new ReadInterval().process(input, output);
 		// 改行
 		input.skipReturn();
 
 		// StateCountの読み取り
 		ReadStateCount rsc = new ReadStateCount();
-		rsc.process(input,output);
+		rsc.process(input, output);
 		// 改行
 		input.skipReturn();
 
@@ -49,7 +50,7 @@ class CommandSetMDPBody implements MessageProcedure
 			// rsに読み取るStateIndexを設定
 			rs.setStateIndex(i);
 			// Stateの読み取り
-			rs.process(input,output);
+			rs.process(input, output);
 			// 取得したControlCountを保持
 			controlcount.add(rs.getControlCount());
 		}
@@ -64,17 +65,18 @@ class CommandSetMDPBody implements MessageProcedure
 				// rsに読み取るControlIndexを設定
 				rc.setControlIndex(j);
 				// Controlの読み取り
-				rc.process(input,output);
+				rc.process(input, output);
 			}
 		}
 		// RegularPolicyの読み取り
 		ReadRegularPolicy rrp = new ReadRegularPolicy();
 		rrp.setStateCount(statecount);
 		rrp.setControlCount(controlcount);
-		rrp.process(input,output);
-		
-		//出力の設定
+		rrp.process(input, output);
+
+		// 出力の設定
 		output.writeToken(EV3LineTracer_1_0_Command.RESULT_OK);
 		output.newLine();
 	}
+
 }
