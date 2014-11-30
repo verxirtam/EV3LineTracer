@@ -55,8 +55,7 @@ import rl.communication.message.context.MessageOutputContext;
 //
 public class EV3LineTracer_1_0_Command implements MessageProcedure
 {
-	public static String RESULT_OK = "OK";
-	public static String RESULT_NG = "NG";
+	public static final String VERSION_STRING="EV3LineTracer_1.0";
 
 	@Override
 	public void process(MessageInputContext input, MessageOutputContext output)
@@ -79,9 +78,9 @@ public class EV3LineTracer_1_0_Command implements MessageProcedure
 			throws Exception
 	{
 		// SetMDP
-		if (commandstring.equals(CommandSetMDPBody.COMMAND_STRING))
+		if (commandstring.equals(CommandSetMDP.COMMAND_STRING))
 		{
-			return new CommandSetMDPBody();
+			return new CommandSetMDP();
 		}
 		// ExecEpisode
 		if (commandstring.equals(CommandExecEpisode.COMMAND_STRING))

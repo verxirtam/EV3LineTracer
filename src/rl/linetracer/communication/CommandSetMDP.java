@@ -17,9 +17,11 @@ import rl.communication.message.context.MessageOutputContext;
 //===================================
 //<Result>::="OK"|"NG"
 // TODO NGのケースを記述する
-class CommandSetMDPBody implements MessageProcedure
+public class CommandSetMDP implements MessageProcedure
 {
 	public static final String COMMAND_STRING = "SetMDP";
+	public static final String RESULT_OK = "OK";
+	
 	@Override
 	public void process(MessageInputContext input, MessageOutputContext output)
 			throws Exception
@@ -75,7 +77,7 @@ class CommandSetMDPBody implements MessageProcedure
 		rrp.process(input, output);
 
 		// 出力の設定
-		output.writeToken(EV3LineTracer_1_0_Command.RESULT_OK);
+		output.writeToken(RESULT_OK);
 		output.newLine();
 	}
 

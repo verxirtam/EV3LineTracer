@@ -17,7 +17,7 @@ import rl.linetracer.communication.EV3LineTracer_1_0_Command;
 //<endl>;空行
 class Message_1_0_Body implements MessageProcedure
 {
-
+	public static final String VERSION_STRING="MESSAGE_1.0";
 	@Override
 	public void process(MessageInputContext input, MessageOutputContext output) throws Exception
 	{
@@ -27,7 +27,7 @@ class Message_1_0_Body implements MessageProcedure
 		input.skipReturn();
 		
 		//返信用メッセージ作成
-		output.writeToken("MESSAGE_1.0");
+		output.writeToken(VERSION_STRING);
 		output.newLine();
 		
 		// コマンドの処理
@@ -36,7 +36,7 @@ class Message_1_0_Body implements MessageProcedure
 
 	private MessageProcedure getMessageCommand(MessageInputContext context, String version_string) throws Exception
 	{
-		if (version_string.equals("EV3LineTracer_1.0"))
+		if (version_string.equals(EV3LineTracer_1_0_Command.VERSION_STRING))
 		{
 			return new EV3LineTracer_1_0_Command();
 		}

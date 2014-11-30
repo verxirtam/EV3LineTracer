@@ -32,7 +32,7 @@ class Message implements MessageProcedure
 
 	private MessageProcedure getMessgeBody(String version_string) throws Exception
 	{
-		if (version_string.equals("MESSAGE_1.0"))
+		if (version_string.equals(Message_1_0_Body.VERSION_STRING))
 		{
 			return new Message_1_0_Body();
 		}

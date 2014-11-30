@@ -23,6 +23,7 @@ import rl.communication.message.context.MessageOutputContext;
 public class CommandNullCommand implements MessageProcedure
 {
 	public static final String COMMAND_STRING = "NullCommand";
+	public static final String RESULT_OK = "OK";
 
 	@Override
 	public void process(MessageInputContext input, MessageOutputContext output)
@@ -33,7 +34,7 @@ public class CommandNullCommand implements MessageProcedure
 		// outputに対してはRESULT_OKを出力する
 		output.writeToken(COMMAND_STRING);
 		output.newLine();
-		output.writeToken(EV3LineTracer_1_0_Command.RESULT_OK);
+		output.writeToken(RESULT_OK);
 		output.newLine();
 	}
 
