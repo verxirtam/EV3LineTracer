@@ -18,15 +18,30 @@ public class Episode
 	// コピーコンストラクタ
 	public Episode(Episode e)
 	{
+		//eでthisを初期化する
+		setEpisode(e);
+	}
+
+	//インスタンスeと同一の内容をthisに設定する
+	public void setEpisode(Episode e)
+	{
+		//thisとeが同一のインスタンスを指しているときは何もしない
+		if(this==e)
+		{
+			return;
+		}
+		
+		//空のエピソードを作成
 		Steps = new java.util.ArrayList<Step>();
 
+		//eのStepを設定する
 		int step_count = e.GetStepCount();
 		for (int i = 0; i < step_count; i++)
 		{
 			this.AddStep(e.GetStep(i));
 		}
 	}
-
+	
 	public int GetStepCount()
 	{
 		return Steps.size();

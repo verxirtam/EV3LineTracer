@@ -17,15 +17,12 @@ public class TSVInputContext implements MessageInputContext
 	// 行末に達しているかどうかのチェックは行わない
 	private void newLine() throws IOException
 	{
-		// TODO 次の行が空でかつバッファの最後の場合に例外を起こすべきか決める
-		
 		// 次の行を取得
 		String newline = MessageReader.readLine();
 		// バッファの最後に達したか確認
 		if (newline == null)
 		{
-			//throw new IOException("End of Buffer.");
-			//バッファの最後に達した場合はからのToken列を設定する
+			//バッファの最後に達した場合は空のToken列を設定する
 			CurrentLine = new String[0];
 			return;
 		}

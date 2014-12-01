@@ -85,7 +85,7 @@ public class EV3LineTracer_1_0_Command implements MessageProcedure
 		// ExecEpisode
 		if (commandstring.equals(CommandExecEpisode.COMMAND_STRING))
 		{
-			return new CommandExecEpisode();
+			return createCommandExecEpisode();
 		}
 		// NullCommand
 		if (commandstring.equals(CommandNullCommand.COMMAND_STRING))
@@ -94,5 +94,11 @@ public class EV3LineTracer_1_0_Command implements MessageProcedure
 		}
 		// どのコマンドにも当てはまらない場合は例外を投げる
 		throw new Exception(this.getClass().getName());
+	}
+
+	//CommandExecEpisodeのインスタンスを返す
+	protected CommandExecEpisode createCommandExecEpisode()
+	{
+		return new CommandExecEpisode();
 	}
 }
