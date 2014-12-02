@@ -14,6 +14,7 @@ import rl.linetracer.EV3LineTracer;
 //
 //
 //出力
+//"ExecEpisode"<endl>;
 //<ExecEpisodeResult>;コマンドの結果
 //
 //<ExecEpisodeResult>::=
@@ -63,6 +64,9 @@ public class CommandExecEpisode implements MessageProcedure
 	//)
 	private void outputEpisodeOK(Episode e, MessageOutputContext output) throws IOException
 	{
+		//コマンド名の出力
+		output.writeToken(COMMAND_STRING);
+		output.newLine();
 		//ExecEpisodeResultの出力
 		output.writeToken(RESULT_OK);
 		output.newLine();
