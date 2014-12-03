@@ -1,6 +1,5 @@
 package rl.linetracer;
 
-import lejos.robotics.Color;
 import rl.*;
 
 //TODO TEST

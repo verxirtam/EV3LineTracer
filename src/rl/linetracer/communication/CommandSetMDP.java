@@ -77,6 +77,8 @@ public class CommandSetMDP implements MessageProcedure
 		rrp.process(input, output);
 
 		// 出力の設定
+		output.writeToken(COMMAND_STRING);
+		output.newLine();
 		output.writeToken(RESULT_OK);
 		output.newLine();
 	}
