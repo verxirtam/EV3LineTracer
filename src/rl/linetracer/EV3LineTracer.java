@@ -301,6 +301,7 @@ public class EV3LineTracer
 		//EV3を停止させる
 		MC.Stop();
 	}
+	
 	//State、CurrentPolicyに応じたControlを取得する
 	public void GetControl(Step step)
 	{
@@ -460,6 +461,16 @@ public class EV3LineTracer
 	public StochasticPolicy GetCurrentPolicy()
 	{
 		return CurrentPolicy;
+	}
+
+	public State GetState(int i)
+	{
+		return State[i];
+	}
+
+	public Control GetControl(int i, int u)
+	{
+		return Control[i][u];
 	}
 
 

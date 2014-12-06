@@ -1,10 +1,11 @@
 package rl.communication.message.context;
 
 import java.io.BufferedReader;
+import java.io.Closeable;
 import java.io.IOException;
 
 // タブ区切りのメッセージ
-public class TSVInputContext implements MessageInputContext
+public class TSVInputContext implements MessageInputContext,Closeable
 {
 	// メッセージを保持するBufferedReader
 	BufferedReader MessageReader;
@@ -98,6 +99,12 @@ public class TSVInputContext implements MessageInputContext
 	{
 		// 現在行で次のTokenがあるかを返却する(Tokenがあるならtrue)
 		return CurrentIndex != (CurrentLine.length - 1);
+	}
+
+	@Override
+	public void close() throws IOException
+	{
+		MessageReader.close();
 	}
 
 }

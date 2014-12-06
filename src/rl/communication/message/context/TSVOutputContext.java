@@ -1,9 +1,10 @@
 package rl.communication.message.context;
 
 import java.io.BufferedWriter;
+import java.io.Closeable;
 import java.io.IOException;
 
-public class TSVOutputContext implements MessageOutputContext
+public class TSVOutputContext implements MessageOutputContext,Closeable
 {
 	//現在位置が行頭であるかどうかを示す
 	boolean atHeadOfLine;
@@ -59,6 +60,12 @@ public class TSVOutputContext implements MessageOutputContext
 	public void flush() throws IOException
 	{
 		MessageWriter.flush();
+	}
+
+	@Override
+	public void close() throws IOException
+	{
+		MessageWriter.close();
 	}
 
 }
