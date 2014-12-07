@@ -31,6 +31,7 @@ import rl.communication.message.context.MessageOutputContext;
 //)
 //出力用
 //===================================
+//<Version>::="EV3LineTracer_1.0"
 //<Command>::=
 //(
 //	"SetMDP"<endl>;MDPを設定
@@ -65,7 +66,13 @@ public class EV3LineTracer_1_0_Command implements MessageProcedure
 		String commandstring = input.nextToken();
 		// 改行
 		input.skipReturn();
-
+		
+		//出力
+		//EV3バージョン
+		output.writeToken(VERSION_STRING);
+		//改行
+		output.newLine();
+		
 		// コマンドの取得
 		MessageProcedure com = createCommand(commandstring);
 		//コマンドの実行

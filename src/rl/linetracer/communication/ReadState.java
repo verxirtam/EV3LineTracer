@@ -33,7 +33,7 @@ class ReadState implements MessageProcedure
 		// StateIndexの検証
 		if (StateIndex != Integer.parseInt(input.nextToken()))
 		{
-			throw new Exception(this.getClass().getName());
+			throw new Exception(this.getClass().getName()+": StateIndex is Invalid.");
 		}
 		// RefMaxの取得
 		double refmax = Double.parseDouble(input.nextToken());

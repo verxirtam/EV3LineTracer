@@ -11,7 +11,7 @@ import rl.communication.message.context.MessageOutputContext;
 //出力用
 //===================================
 //
-class Message implements MessageProcedure
+public class Message implements MessageProcedure
 {
 	@Override
 	public void process(MessageInputContext input, MessageOutputContext output) throws Exception
