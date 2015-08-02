@@ -14,9 +14,16 @@ import rl.communication.message.context.TSVOutputContext;
 
 public class TCPServer
 {
-	private final int Port = 51124;
+	private final int Port = 50000;
 
-
+	public static void main(String args[])
+	{
+		TCPServer ts = new TCPServer();
+		
+		ts.ServerRun();
+		
+	}
+	
 	// サーバサービスの実行
 	public void ServerRun()
 	{
@@ -56,7 +63,8 @@ public class TCPServer
 
 	public void run(Socket socket) throws Exception
 	{
-
+		//10秒待つ
+		Thread.sleep(10000);
 		try
 		(
 			// メッセージを受信するためのストリーム
