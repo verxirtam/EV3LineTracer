@@ -63,8 +63,6 @@ public class TCPServer
 
 	public void run(Socket socket) throws Exception
 	{
-		//10秒待つ
-		Thread.sleep(10000);
 		try
 		(
 			// メッセージを受信するためのストリーム

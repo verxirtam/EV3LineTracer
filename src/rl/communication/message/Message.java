@@ -16,6 +16,13 @@ public class Message implements MessageProcedure
 	@Override
 	public void process(MessageInputContext input, MessageOutputContext output) throws Exception
 	{
+		//メッセージの1行目が空の場合は何もしない
+		//コネクションを張ったがクライアントが
+		//メッセージを送らずに終了した場合の対策
+		if(!input.hasNextToken())
+		{
+			return;
+		}
 		// メッセージの識別子
 		MessageProcedure mb = getMessgeBody(input.nextToken());
 		// 改行

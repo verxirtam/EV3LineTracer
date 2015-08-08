@@ -48,7 +48,12 @@ public class TSVInputContext implements MessageInputContext,Closeable
 		if (!hasNextToken())
 		{
 			// 行末なら例外発生
-			throw new Exception("error on nextToken()");
+			String msg="";
+			for(int i=0;i<CurrentLine.length;i++)
+			{
+				msg += CurrentLine[i] + "\n";
+			}
+			throw new Exception("error on nextToken() CurrentLine = \"" + msg + "\"");
 		}
 		// 現在位置を1つ進める
 		CurrentIndex++;
@@ -98,7 +103,7 @@ public class TSVInputContext implements MessageInputContext,Closeable
 	public boolean hasNextToken()
 	{
 		// 現在行で次のTokenがあるかを返却する(Tokenがあるならtrue)
-		return CurrentIndex != (CurrentLine.length - 1);
+		return ( CurrentIndex < ( CurrentLine.length - 1 ) );
 	}
 
 	@Override
