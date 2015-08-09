@@ -1,10 +1,21 @@
 package rl.linetracer;
 
 import rl.*;
+import rl.communication.TCPServer;
 
 //TODO TEST
 public class EV3LineTracer
 {
+	//////////////////////////////////////////
+	public static void main(String args[])
+	{
+		TCPServer ts = new TCPServer();
+		
+		ts.ServerRun();
+		
+	}
+	///////////////////////////////////////////
+	
 	//EV3LineTracerの唯一のインスタンス
 	private static EV3LineTracer ev3 = new EV3LineTracer();
 	///////////////////////////////////////////
