@@ -1,8 +1,0 @@
-<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$interfacerl_1_1communication_1_1message_1_1MessageProcedure.html" title="rl.communication.message.\lMessageProcedure" alt="" coords="6,135,189,177"/>
-<area shape="rect" id="node2" href="$classrl_1_1communication_1_1message_1_1Message.html" title="rl.communication.message.\lMessage" alt="" coords="247,5,430,46"/>
-<area shape="rect" id="node3" href="$classrl_1_1linetracer_1_1communication_1_1CommandExecEpisode.html" title="rl.linetracer.communication.\lCommandExecEpisode" alt="" coords="247,70,430,111"/>
-<area shape="rect" id="node4" href="$classrl_1_1linetracer_1_1communication_1_1CommandNullCommand.html" title="rl.linetracer.communication.\lCommandNullCommand" alt="" coords="247,135,430,177"/>
-<area shape="rect" id="node5" href="$classrl_1_1linetracer_1_1communication_1_1CommandSetMDP.html" title="rl.linetracer.communication.\lCommandSetMDP" alt="" coords="247,201,430,242"/>
-<area shape="rect" id="node6" href="$classrl_1_1linetracer_1_1communication_1_1EV3LineTracer__1__0__Command.html" title="rl.linetracer.communication.\lEV3LineTracer_1_0_Command" alt="" coords="237,266,440,307"/>
-</map>

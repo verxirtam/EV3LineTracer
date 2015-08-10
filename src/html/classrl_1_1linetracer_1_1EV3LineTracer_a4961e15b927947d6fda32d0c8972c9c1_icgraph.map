@@ -1,6 +1,0 @@
-<map id="rl.linetracer.EV3LineTracer.GetElapsedTime" name="rl.linetracer.EV3LineTracer.GetElapsedTime">
-<area shape="rect" id="node2" href="$classrl_1_1linetracer_1_1EV3LineTracer.html#ab15571908e063c78f5404600abe07a1b" title="rl.linetracer.EV3LineTracer.\lGetStateAndCost" alt="" coords="235,34,415,75"/>
-<area shape="rect" id="node3" href="$classrl_1_1linetracer_1_1EV3LineTracer.html#aa98bee66591900f328a0b53a981cce5d" title="rl.linetracer.EV3LineTracer.\lReady" alt="" coords="465,5,645,46"/>
-<area shape="rect" id="node4" href="$classrl_1_1linetracer_1_1EV3LineTracer.html#a253244c1b7c80d937bd8881b6e2be268" title="rl.linetracer.EV3LineTracer.\lExecEpisode" alt="" coords="694,34,874,75"/>
-<area shape="rect" id="node5" href="$classrl_1_1linetracer_1_1EV3LineTracer.html#af2d8adfd3f351f6b69337cd10b10c92e" title="rl.linetracer.EV3LineTracer.\lDoTest" alt="" coords="923,34,1103,75"/>
-</map>

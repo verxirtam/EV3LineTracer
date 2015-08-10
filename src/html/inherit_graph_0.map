@@ -1,6 +1,0 @@
-<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node2" href="$classrl_1_1communication_1_1message_1_1context_1_1TSVInputContext.html" title="rl.communication.message.context.\lTSVInputContext" alt="" coords="283,18,512,59"/>
-<area shape="rect" id="node3" href="$classrl_1_1communication_1_1message_1_1context_1_1TSVOutputContext.html" title="rl.communication.message.context.\lTSVOutputContext" alt="" coords="283,97,512,138"/>
-<area shape="rect" id="node4" href="$interfacerl_1_1communication_1_1message_1_1context_1_1MessageInputContext.html" title="rl.communication.message.context.\lMessageInputContext" alt="" coords="5,5,235,46"/>
-<area shape="rect" id="node5" href="$interfacerl_1_1communication_1_1message_1_1context_1_1MessageOutputContext.html" title="rl.communication.message.context.\lMessageOutputContext" alt="" coords="5,122,235,163"/>
-</map>
