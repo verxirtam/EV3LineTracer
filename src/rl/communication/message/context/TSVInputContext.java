@@ -7,13 +7,28 @@ import java.io.IOException;
 // タブ区切りのメッセージ
 public class TSVInputContext implements MessageInputContext,Closeable
 {
+	//読み込み開始したかを表す
+	//最初のnewLine()を行うかの判断に利用する
+	boolean isBeginning;
 	// メッセージを保持するBufferedReader
 	BufferedReader MessageReader;
 	// 現在の行をタブ区切りでTokenにわけて配列で保持したもの
 	String[] CurrentLine;
 	// CurrentLine上での現在位置
 	int CurrentIndex;
-
+	//読み込み開始のため最初の行を読み込む
+	//読み込み開始済みなら何もしない
+	private void begin() throws IOException
+	{
+		//読み込み前の場合は最初の行を読み込む
+		if(isBeginning)
+		{
+			//最初の行を読み込む
+			newLine();
+			//isBeginningを読み込み開始済みに設定する
+			isBeginning=false;
+		}
+	}
 	// 現在行を次の行に移す
 	// 行末に達しているかどうかのチェックは行わない
 	private void newLine() throws IOException
@@ -33,17 +48,18 @@ public class TSVInputContext implements MessageInputContext,Closeable
 		CurrentIndex = -1;
 	}
 
-	public TSVInputContext(BufferedReader br) throws IOException
+	public TSVInputContext(BufferedReader br)
 	{
+		isBeginning = true;
 		MessageReader = br;
-		newLine();
-
 	}
 
 	// 次のTokenを取得し現在のTokenを1つ進める
 	@Override
 	public String nextToken() throws Exception
 	{
+		//読み込み前の場合は最初の行を読み込む
+		begin();
 		// 現在位置が行末か確認
 		if (!hasNextToken())
 		{
@@ -65,6 +81,8 @@ public class TSVInputContext implements MessageInputContext,Closeable
 	@Override
 	public void skipToken(String skipString) throws Exception
 	{
+		//読み込み前の場合は最初の行を読み込む
+		begin();
 		// 次のTokenが無ければ例外発生
 		if (!hasNextToken())
 		{
@@ -88,6 +106,8 @@ public class TSVInputContext implements MessageInputContext,Closeable
 	@Override
 	public void skipReturn() throws Exception
 	{
+		//読み込み前の場合は最初の行を読み込む
+		begin();
 		// 現在行に次のTokenがある場合は例外発生
 		if (hasNextToken())
 		{
@@ -100,8 +120,10 @@ public class TSVInputContext implements MessageInputContext,Closeable
 
 	// 現在の行で次のTokenがあるかどうかを確認する
 	@Override
-	public boolean hasNextToken()
+	public boolean hasNextToken() throws IOException
 	{
+		//読み込み前の場合は最初の行を読み込む
+		begin();
 		// 現在行で次のTokenがあるかを返却する(Tokenがあるならtrue)
 		return ( CurrentIndex < ( CurrentLine.length - 1 ) );
 	}

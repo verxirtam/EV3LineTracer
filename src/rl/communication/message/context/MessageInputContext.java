@@ -1,5 +1,7 @@
 package rl.communication.message.context;
 
+import java.io.IOException;
+
 //改行単位でTokenを読み取る
 //行末まで来たらskipReturn()で次の行に進む必要がある。
 public interface MessageInputContext
@@ -14,6 +16,6 @@ public interface MessageInputContext
 	void skipReturn() throws Exception;
 
 	// 現在の行で次のTokenがあるかどうかを確認する
-	boolean hasNextToken();
+	boolean hasNextToken() throws IOException;
 
 }
