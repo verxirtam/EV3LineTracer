@@ -32,6 +32,11 @@ public class CommandSetMDP implements MessageProcedure
 		// 改行
 		input.skipReturn();
 
+		// CostMaxの読み取り
+		new ReadCostMax().process(input, output);
+		// 改行
+		input.skipReturn();
+
 		// StateCountの読み取り
 		ReadStateCount rsc = new ReadStateCount();
 		rsc.process(input, output);

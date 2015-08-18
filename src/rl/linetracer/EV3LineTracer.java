@@ -484,5 +484,10 @@ public class EV3LineTracer
 		return Control[i][u];
 	}
 
+	public void setCostMax(double cost_max)
+	{
+		this.CostMax = cost_max;
+	}
+
 
 }
