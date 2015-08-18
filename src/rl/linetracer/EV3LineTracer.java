@@ -489,5 +489,10 @@ public class EV3LineTracer
 		this.CostMax = cost_max;
 	}
 
+	public double GetCostMax()
+	{
+		return this.CostMax;
+	}
+
 
 }
