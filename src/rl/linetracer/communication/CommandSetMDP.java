@@ -86,14 +86,17 @@ public class CommandSetMDP implements MessageProcedure
 		rrp.setStateCount(statecount);
 		rrp.setControlCount(controlcount);
 		rrp.process(input, output);
-
+		
+		//CurrentPolicyをRegularPolicyに設定する
+		EV3LineTracer ev3 = EV3LineTracer.getInstance();
+		ev3.SetCurrentPolicy(ev3.GetRegularPolicy());
+		
 		// 出力の設定
 		output.writeToken(COMMAND_STRING);
 		output.newLine();
 		output.writeToken(RESULT_OK);
 		output.newLine();
 		//TODO 設定した内容を返信する
-		EV3LineTracer ev3 = EV3LineTracer.getInstance();
 		output.writeToken(String.valueOf(ev3.GetInterval()));
 		output.newLine();
 		output.writeToken(String.valueOf(ev3.GetCostMax()));

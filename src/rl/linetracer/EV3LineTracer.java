@@ -241,6 +241,12 @@ public class EV3LineTracer
 	{
 		CurrentPolicy=new StochasticPolicy(prob);
 	}
+	//CurrentPolicyの設定
+	public void SetCurrentPolicy(StochasticPolicy p)
+	{
+		CurrentPolicy=p;
+	}
+
 
 	//経過時間を取得する
 	public double GetElapsedTime()
