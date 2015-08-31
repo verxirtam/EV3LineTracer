@@ -36,4 +36,9 @@ public class StochasticPolicy
 	{
 		return Control[i].GetValueMax();
 	}
+	//StateCountを返す
+	public int GetStateCount()
+	{
+		return StateCount;
+	}
 }
