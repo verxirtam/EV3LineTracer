@@ -89,6 +89,11 @@ public class EV3LineTracer_1_0_Command implements MessageProcedure
 		{
 			return new CommandSetMDP();
 		}
+		// SetCurrentPolicy
+		if (commandstring.equals(CommandSetCurrentPolicy.COMMAND_STRING))
+		{
+			return new CommandSetCurrentPolicy();
+		}
 		// ExecEpisode
 		if (commandstring.equals(CommandExecEpisode.COMMAND_STRING))
 		{
