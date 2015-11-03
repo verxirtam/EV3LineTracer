@@ -16,14 +16,19 @@ public abstract class CostGetter
 
 	public CostGetter(double cost_max)
 	{
+		setCostMax(cost_max);
+	}
+	
+	public void setCostMax(double cost_max)
+	{
 		costMax = cost_max;
 	}
-
+	
 	//ゴール時のcostを算出
 	abstract public double getCostWhenGoal(Step step, double elapsed_time);
 
 	//コースアウト時のcostを算出(定義済み)
-	public double getCostWhenCourseOut(Step step)
+	public double getCostWhenCourseOut(Step step, double elapsed_time)
 	{
 		return costMax;
 	}

@@ -30,6 +30,7 @@ public class EV3LineTracer
 	private StochasticPolicy CurrentPolicy;
 	private boolean IsReady;
 	private long StartTime;
+	private CostGetter costGetter;
 	
 	//唯一のコンストラクタ
 	//Singletonにするため、privateにしている
@@ -39,6 +40,7 @@ public class EV3LineTracer
 		State=null;
 		Control=null;
 		IsReady=false;
+		costGetter = new CostGetterElapsedTime(100.0);
 	}
 	
 	//EV3LineTracerのインスタンスの取得
@@ -260,27 +262,28 @@ public class EV3LineTracer
 	//		Step previousstep:	取得したCostを格納するStep
 	public void GetStateAndCost(Step step,Step previousstep)
 	{
+		double elapsed_time = GetElapsedTime();
 		
 		switch(MC.GetColor())
 		{
 		//ゴールした場合
 		case Color.RED:
 			step.State=0;
-			previousstep.Cost=GetElapsedTime();
+			previousstep.Cost=costGetter.getCostWhenGoal(step, elapsed_time);//GetElapsedTime();
 			break;
 		//コースアウトした場合
 		case Color.BLUE:
 			step.State=0;
-			previousstep.Cost=CostMax;
+			previousstep.Cost=costGetter.getCostWhenCourseOut(step,elapsed_time);//CostMax;
 			break;
 		//上記以外(コースを進行中の場合)
 		default:
-			if(GetElapsedTime()>=CostMax)
+			if(elapsed_time >= CostMax)
 			{
 				//CostMax秒以上経過した場合
 				//タイムアウトとして終了
 				step.State=0;
-				previousstep.Cost=CostMax;
+				previousstep.Cost=costGetter.getCostWhenTimeOut(step, elapsed_time);//CostMax;
 			}
 			//CostMax秒に達していない場合
 			//継続してEpisodeを進める
@@ -294,7 +297,7 @@ public class EV3LineTracer
 					break;
 				}
 			}
-			previousstep.Cost=0.0;
+			previousstep.Cost=costGetter.getCostWhenRunning(step, elapsed_time);//0.0;
 			break;
 		}
 	}
@@ -493,6 +496,7 @@ public class EV3LineTracer
 	public void setCostMax(double cost_max)
 	{
 		this.CostMax = cost_max;
+		costGetter.setCostMax(cost_max);
 	}
 
 	public double GetCostMax()
