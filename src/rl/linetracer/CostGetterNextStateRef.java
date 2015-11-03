@@ -8,7 +8,7 @@ import rl.Step;
 /**
  * @author daisuke
  * 次のstateのindexが2より大きいかどうかで1ステップあたりのcostを変更する
- * ゴール時にはコストはかからない
+ * ゴール時にも走行時と同じコストがかかる
  */
 public class CostGetterNextStateRef extends CostGetter
 {
@@ -27,7 +27,7 @@ public class CostGetterNextStateRef extends CostGetter
 	@Override
 	public double getCostWhenGoal(Step step, double elapsed_time)
 	{
-		return 0.0;
+		return getCostWhenRunning(step,elapsed_time);
 	}
 
 	/* (non-Javadoc)
