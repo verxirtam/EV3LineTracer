@@ -40,7 +40,7 @@ public class EV3LineTracer
 		State=null;
 		Control=null;
 		IsReady=false;
-		costGetter = new CostGetterElapsedTime(100.0);
+		costGetter = new CostGetterNextStateRef(100.0);//CostGetterElapsedTime(100.0);
 	}
 	
 	//EV3LineTracerのインスタンスの取得
