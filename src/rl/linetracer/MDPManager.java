@@ -55,4 +55,9 @@ abstract public class MDPManager
 	{
 		return stateManager._GetState(i);
 	}
+	//StateCountの取得
+	final public int _GetStateCount()
+	{
+		return stateManager._GetStateCount();
+	}
 }

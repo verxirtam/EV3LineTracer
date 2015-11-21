@@ -23,7 +23,6 @@ public class EV3LineTracer
 	private int Interval=10;
 	private final int RegularInterval=10;
 	private MachineControl MC;
-	private State[] State;
 	private double CostMax;
 	private StochasticPolicy RegularPolicy;
 	private StochasticPolicy CurrentPolicy;
@@ -37,7 +36,6 @@ public class EV3LineTracer
 	private EV3LineTracer()
 	{
 		MC=new MachineControl();
-		State=null;
 		IsReady=false;
 		costGetter = new CostGetterNextStateRef(100.0);//CostGetterElapsedTime(100.0);
 		mdpManager = new MDPManagerRefmax();
@@ -64,40 +62,22 @@ public class EV3LineTracer
 	//StateとConrolの配列の領域を確保する
 	public void SetStateCount(int statecount)
 	{
-		if(statecount<=0)
-		{
-			throw new IllegalArgumentException();
-		}
-		State=new State[statecount];
 		mdpManager._SetStateCount(statecount);
 	}
 	//Stateを設定する
 	public void SetState(int i,double refmax,int controlcount)
 	{
-		if(
-				(i<0)||
-				(i>=State.length)||
-				(refmax<0.0)||
-				(refmax>1.0)||
-				(controlcount<0)
-			)
-		{
-			throw new IllegalArgumentException();
-		}
-		State[i]=new State();
-		State[i].RefMax=refmax;
-		State[i].ControlCount=controlcount;
 		mdpManager._SetState(i, refmax, controlcount);
 	}
 	//StateCountの取得
 	public int GetStateCount()
 	{
-		return State.length;
+		return mdpManager._GetStateCount();
 	}
 	//ControlCountの取得
 	public int GetControlCount(int i)
 	{
-		return State[i].ControlCount;
+		return mdpManager._GetControlCount(i);
 	}
 	//Contolを設定する
 	public void SetControl(int i,int u,int lmotorspeed,int rmotorspeed)
@@ -156,18 +136,8 @@ public class EV3LineTracer
 				step.State=0;
 				previousstep.Cost=costGetter.getCostWhenTimeOut(step, elapsed_time);//CostMax;
 			}
-			//CostMax秒に達していない場合
-			//継続してEpisodeを進める
-			double r=MC.GetReflection();
-			//測定値に対応するStateを定める
-			for(int i=1;i<State.length;i++)
-			{
-				if(r<State[i].RefMax)
-				{
-					step.State=i;
-					break;
-				}
-			}
+			//現在のstateを求める
+			mdpManager.GetCurrentState(step, MC);
 			previousstep.Cost=costGetter.getCostWhenRunning(step, elapsed_time);//0.0;
 			break;
 		}
@@ -350,7 +320,7 @@ public class EV3LineTracer
 
 	public State GetState(int i)
 	{
-		return State[i];
+		return mdpManager._GetState(i);
 	}
 
 	public Control GetControl(int i, int u)

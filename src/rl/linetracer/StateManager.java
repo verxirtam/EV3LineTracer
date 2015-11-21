@@ -15,4 +15,6 @@ abstract public class StateManager
 
 	abstract public State _GetState(int i);
 
+	abstract public int _GetStateCount();
+
 }

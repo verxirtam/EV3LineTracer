@@ -71,4 +71,10 @@ public class StateManagerRefMax extends StateManager
 		return State[i];
 	}
 
+	@Override
+	public int _GetStateCount()
+	{
+		return State.length;
+	}
+
 }
