@@ -8,7 +8,7 @@ public class ControlManagerNormal extends ControlManager
 	
 	public ControlManagerNormal()
 	{
-		// TODO Auto-generated constructor stub
+		Control = null;
 	}
 
 	@Override

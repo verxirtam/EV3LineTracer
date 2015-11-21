@@ -355,7 +355,7 @@ public class EV3LineTracer
 
 	public Control GetControl(int i, int u)
 	{
-		return mdpManager.GetControl(i, u);
+		return mdpManager._GetControl(i, u);
 	}
 
 	public void setCostMax(double cost_max)
