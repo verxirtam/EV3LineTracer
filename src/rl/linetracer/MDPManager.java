@@ -4,7 +4,7 @@ import rl.Step;
 
 abstract public class MDPManager
 {
-	ControlManager controlManager;
+	protected ControlManager controlManager;
 	// 現在のStateとCostを取得する
 	// argument:
 	// Step step: 取得したStateを格納するStep

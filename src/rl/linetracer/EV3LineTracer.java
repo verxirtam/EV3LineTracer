@@ -24,13 +24,13 @@ public class EV3LineTracer
 	private final int RegularInterval=10;
 	private MachineControl MC;
 	private State[] State;
-	private Control[][] Control;
 	private double CostMax;
 	private StochasticPolicy RegularPolicy;
 	private StochasticPolicy CurrentPolicy;
 	private boolean IsReady;
 	private long StartTime;
 	private CostGetter costGetter;
+	private MDPManager mdpManager;
 	
 	//唯一のコンストラクタ
 	//Singletonにするため、privateにしている
@@ -38,9 +38,9 @@ public class EV3LineTracer
 	{
 		MC=new MachineControl();
 		State=null;
-		Control=null;
 		IsReady=false;
 		costGetter = new CostGetterNextStateRef(100.0);//CostGetterElapsedTime(100.0);
+		mdpManager = new MDPManagerRefmax();
 	}
 	
 	//EV3LineTracerのインスタンスの取得
@@ -69,8 +69,7 @@ public class EV3LineTracer
 			throw new IllegalArgumentException();
 		}
 		State=new State[statecount];
-		//Controlの配列の配列の宣言
-		Control=new Control[State.length][];
+		mdpManager._SetStateCount(statecount);
 	}
 	//Stateを設定する
 	public void SetState(int i,double refmax,int controlcount)
@@ -88,7 +87,7 @@ public class EV3LineTracer
 		State[i]=new State();
 		State[i].RefMax=refmax;
 		State[i].ControlCount=controlcount;
-		Control[i]=new Control[State[i].ControlCount];
+		mdpManager._SetState(i, refmax, controlcount);
 	}
 	//StateCountの取得
 	public int GetStateCount()
@@ -103,18 +102,7 @@ public class EV3LineTracer
 	//Contolを設定する
 	public void SetControl(int i,int u,int lmotorspeed,int rmotorspeed)
 	{
-		if(
-				(i<0)||
-				(i>=Control.length)||
-				(u<0)||
-				(u>=Control[i].length)
-			)
-		{
-			throw new IllegalArgumentException();
-		}
-		Control[i][u]=new Control();
-		Control[i][u].LMotorSpeed=lmotorspeed;
-		Control[i][u].RMotorSpeed=rmotorspeed;
+		mdpManager._SetControl(i, u, lmotorspeed, rmotorspeed);
 	}
 	//RegularPolicyの設定
 	public void SetRegularPolicy(double[][] prob)
@@ -214,13 +202,7 @@ public class EV3LineTracer
 	//指定したControlに応じた行動を行う
 	public void DoControl(Step step)
 	{
-		//Controlに対応するモータの速度を取得
-		int lspeed=Control[step.State][step.Control].LMotorSpeed;
-		int rspeed=Control[step.State][step.Control].RMotorSpeed;
-		//取得したモータの速度で進む
-		MC.GoForward(lspeed, rspeed);
-		//Interval(msec)だけこの状態を維持
-		MC.Delay(Interval);
+		mdpManager.DoControl(step, MC, Interval);
 	}
 	//Episodeを実行する準備を行う
 	//コースアウトしていたら復帰し、
@@ -373,7 +355,7 @@ public class EV3LineTracer
 
 	public Control GetControl(int i, int u)
 	{
-		return Control[i][u];
+		return mdpManager.GetControl(i, u);
 	}
 
 	public void setCostMax(double cost_max)
