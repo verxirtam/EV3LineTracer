@@ -2,7 +2,7 @@ package rl.linetracer;
 
 import rl.Step;
 
-public class ControlManagerNormal extends ControlManager
+public class ControlManagerNormal implements ControlManager
 {
 	private Control[][] Control;
 	
