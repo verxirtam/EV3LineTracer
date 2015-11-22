@@ -9,12 +9,12 @@ import rl.Step;
 //getCostWhenCourseOut():コースアウト時のcostを算出(定義済み)
 //getCostWhenTimeOut()	:タイムアウト時のcostを算出(定義済み)
 //getCostWhenRunning()	:実行時のcostを算出
-public abstract class CostGetter
+public abstract class CostManager
 {
 	//costの最大値
 	private double costMax;
 
-	public CostGetter(double cost_max)
+	public CostManager(double cost_max)
 	{
 		setCostMax(cost_max);
 	}

@@ -11,13 +11,13 @@ import rl.Step;
  * ゴール時の経過時間に基づいてコストを算出している
  * 走行中はコストは発生しない
  */
-public class CostGetterElapsedTime extends CostGetter
+public class CostManagerElapsedTime extends CostManager
 {
 
 	/**
 	 * @param cost_max
 	 */
-	public CostGetterElapsedTime(double cost_max)
+	public CostManagerElapsedTime(double cost_max)
 	{
 		super(cost_max);
 	}

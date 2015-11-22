@@ -28,7 +28,7 @@ public class EV3LineTracer
 	private StochasticPolicy CurrentPolicy;
 	private boolean IsReady;
 	private long StartTime;
-	private CostGetter costGetter;
+	private CostManager costManager;
 	private MDPManager mdpManager;
 	
 	//唯一のコンストラクタ
@@ -37,7 +37,7 @@ public class EV3LineTracer
 	{
 		MC=new MachineControl();
 		IsReady=false;
-		costGetter = new CostGetterNextStateRef(100.0);//CostGetterElapsedTime(100.0);
+		costManager = new CostManagerNextStateRef(100.0);//CostGetterElapsedTime(100.0);
 		mdpManager = new MDPManagerRefmax();
 	}
 	
@@ -120,12 +120,12 @@ public class EV3LineTracer
 		//ゴールした場合
 		case Color.RED:
 			step.State=0;
-			previousstep.Cost=costGetter.getCostWhenGoal(step, elapsed_time);//GetElapsedTime();
+			previousstep.Cost=costManager.getCostWhenGoal(step, elapsed_time);//GetElapsedTime();
 			break;
 		//コースアウトした場合
 		case Color.BLUE:
 			step.State=0;
-			previousstep.Cost=costGetter.getCostWhenCourseOut(step,elapsed_time);//CostMax;
+			previousstep.Cost=costManager.getCostWhenCourseOut(step,elapsed_time);//CostMax;
 			break;
 		//上記以外(コースを進行中の場合)
 		default:
@@ -134,11 +134,11 @@ public class EV3LineTracer
 				//CostMax秒以上経過した場合
 				//タイムアウトとして終了
 				step.State=0;
-				previousstep.Cost=costGetter.getCostWhenTimeOut(step, elapsed_time);//CostMax;
+				previousstep.Cost=costManager.getCostWhenTimeOut(step, elapsed_time);//CostMax;
 			}
 			//現在のstateを求める
 			mdpManager.GetCurrentState(step, MC);
-			previousstep.Cost=costGetter.getCostWhenRunning(step, elapsed_time);//0.0;
+			previousstep.Cost=costManager.getCostWhenRunning(step, elapsed_time);//0.0;
 			break;
 		}
 	}
@@ -331,7 +331,7 @@ public class EV3LineTracer
 	public void setCostMax(double cost_max)
 	{
 		this.CostMax = cost_max;
-		costGetter.setCostMax(cost_max);
+		costManager.setCostMax(cost_max);
 	}
 
 	public double GetCostMax()

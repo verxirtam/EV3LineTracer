@@ -10,13 +10,13 @@ import rl.Step;
  * 次のstateのindexが2より大きいかどうかで1ステップあたりのcostを変更する
  * ゴール時にも走行時と同じコストがかかる
  */
-public class CostGetterNextStateRef extends CostGetter
+public class CostManagerNextStateRef extends CostManager
 {
 
 	/**
 	 * @param cost_max
 	 */
-	public CostGetterNextStateRef(double cost_max)
+	public CostManagerNextStateRef(double cost_max)
 	{
 		super(cost_max);
 	}
