@@ -5,7 +5,7 @@ import rl.Step;
 public interface ControlManager
 {
 	// 指定したControlに応じた行動を行う
-	void DoControl(Step step, MachineControl MC, int interval);
+	void DoControl(Step step, MachineControl MC);
 
 	void _SetStateCount(int statecount);
 
@@ -14,6 +14,10 @@ public interface ControlManager
 	void _SetControl(int i, int u, int lmotorspeed, int rmotorspeed);
 
 	Control _GetControl(int i, int u);
+
+	int _getInterval();
+
+	void _setInterval(int t);
 
 
 }

@@ -17,9 +17,9 @@ abstract public class MDPManager
 	}
 
 	// 指定したControlに応じた行動を行う
-	final public void DoControl(Step step, MachineControl MC,int interval)
+	final public void DoControl(Step step, MachineControl MC)
 	{
-		controlManager.DoControl(step, MC, interval);
+		controlManager.DoControl(step, MC);
 	}
 	
 	/////////////////////////////////////////
@@ -94,5 +94,16 @@ abstract public class MDPManager
 	{
 		costManager.setCostMax(cost_max);
 	}
-
+	final public double _getCostMax()
+	{
+		return costManager._getCostMax();
+	}
+	final public int _getInterval()
+	{
+		return controlManager._getInterval();
+	}
+	final public void _setInterval(int t)
+	{
+		controlManager._setInterval(t);
+	}
 }

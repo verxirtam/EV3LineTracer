@@ -4,6 +4,7 @@ import rl.Step;
 
 public class ControlManagerNormal implements ControlManager
 {
+	int interval;
 	private Control[][] Control;
 	
 	public ControlManagerNormal()
@@ -12,7 +13,7 @@ public class ControlManagerNormal implements ControlManager
 	}
 
 	@Override
-	public void DoControl(Step step, MachineControl MC, int interval)
+	public void DoControl(Step step, MachineControl MC)
 	{
 		//Controlに対応するモータの速度を取得
 		int lspeed=Control[step.State][step.Control].LMotorSpeed;
@@ -58,6 +59,22 @@ public class ControlManagerNormal implements ControlManager
 	public Control _GetControl(int i, int u)
 	{
 		return Control[i][u];
+	}
+
+	@Override
+	public int _getInterval()
+	{
+		return interval;
+	}
+
+	@Override
+	public void _setInterval(int t)
+	{
+		if(t<0)
+		{
+			throw new IllegalArgumentException();
+		}
+		interval=t;
 	}
 
 }

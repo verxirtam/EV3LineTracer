@@ -42,4 +42,11 @@ public abstract class CostManager
 	//実行時のcostを算出
 	abstract public double getCostWhenRunning(Step step, double elapsed_time);
 
+	public double _getCostMax()
+	{
+		return costMax;
+	}
+
+
+
 }

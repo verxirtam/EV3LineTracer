@@ -20,15 +20,12 @@ public class EV3LineTracer
 	private static EV3LineTracer ev3 = new EV3LineTracer();
 	///////////////////////////////////////////
 	///////////////////////////////////////////
-	private int Interval=10;
-	private final int RegularInterval=10;
+	private final int regularInterval=10;
 	private MachineControl MC;
-	private double CostMax;
 	private StochasticPolicy RegularPolicy;
 	private StochasticPolicy CurrentPolicy;
 	private boolean IsReady;
 	private long StartTime;
-	private CostManager costManager;
 	private MDPManager mdpManager;
 	
 	//唯一のコンストラクタ
@@ -37,7 +34,6 @@ public class EV3LineTracer
 	{
 		MC=new MachineControl();
 		IsReady=false;
-		costManager = new CostManagerNextStateRef(100.0);//CostGetterElapsedTime(100.0);
 		mdpManager = new MDPManagerRefmax();
 	}
 	
@@ -52,11 +48,7 @@ public class EV3LineTracer
 	//Intervalを設定する
 	public void SetInterval(int t)
 	{
-		if(t<0)
-		{
-			throw new IllegalArgumentException();
-		}
-		Interval=t;
+		mdpManager._setInterval(t);
 	}
 	//StateCountを指定して、
 	//StateとConrolの配列の領域を確保する
@@ -120,25 +112,25 @@ public class EV3LineTracer
 		//ゴールした場合
 		case Color.RED:
 			step.State=0;
-			previousstep.Cost=costManager.getCostWhenGoal(step, elapsed_time);//GetElapsedTime();
+			previousstep.Cost=mdpManager.getCostWhenGoal(step, elapsed_time);//GetElapsedTime();
 			break;
 		//コースアウトした場合
 		case Color.BLUE:
 			step.State=0;
-			previousstep.Cost=costManager.getCostWhenCourseOut(step,elapsed_time);//CostMax;
+			previousstep.Cost=mdpManager.getCostWhenCourseOut(step,elapsed_time);//CostMax;
 			break;
 		//上記以外(コースを進行中の場合)
 		default:
-			if(elapsed_time >= CostMax)
+			if(elapsed_time >= mdpManager._getCostMax())
 			{
 				//CostMax秒以上経過した場合
 				//タイムアウトとして終了
 				step.State=0;
-				previousstep.Cost=costManager.getCostWhenTimeOut(step, elapsed_time);//CostMax;
+				previousstep.Cost=mdpManager.getCostWhenTimeOut(step, elapsed_time);//CostMax;
 			}
 			//現在のstateを求める
 			mdpManager.GetCurrentState(step, MC);
-			previousstep.Cost=costManager.getCostWhenRunning(step, elapsed_time);//0.0;
+			previousstep.Cost=mdpManager.getCostWhenRunning(step, elapsed_time);//0.0;
 			break;
 		}
 	}
@@ -151,7 +143,7 @@ public class EV3LineTracer
 		while((!MC.OnBlackLine())&&(MC.GetColor()!=Color.RED))
 		{
 			MC.GoBack(lspeed,rspeed);
-			MC.Delay(RegularInterval);
+			MC.Delay(regularInterval);
 			c++;
 			c%=10;
 			if((c==0)&&(lspeed<rspeed))
@@ -172,7 +164,7 @@ public class EV3LineTracer
 	//指定したControlに応じた行動を行う
 	public void DoControl(Step step)
 	{
-		mdpManager.DoControl(step, MC, Interval);
+		mdpManager.DoControl(step, MC);
 	}
 	//Episodeを実行する準備を行う
 	//コースアウトしていたら復帰し、
@@ -307,7 +299,7 @@ public class EV3LineTracer
 	}
 	public int GetInterval()
 	{
-		return Interval;
+		return mdpManager._getInterval();
 	}
 	public StochasticPolicy GetRegularPolicy()
 	{
@@ -330,13 +322,12 @@ public class EV3LineTracer
 
 	public void setCostMax(double cost_max)
 	{
-		this.CostMax = cost_max;
-		costManager.setCostMax(cost_max);
+		mdpManager._setCostMax(cost_max);
 	}
 
 	public double GetCostMax()
 	{
-		return this.CostMax;
+		return mdpManager._getCostMax();
 	}
 
 
