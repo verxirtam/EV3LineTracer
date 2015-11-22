@@ -2,7 +2,7 @@ package rl.linetracer;
 
 import rl.Step;
 
-abstract public class StateManager
+public interface StateManager
 {
 
 	abstract public void GetCurrentState(Step step, MachineControl MC);

@@ -2,7 +2,7 @@ package rl.linetracer;
 
 import rl.Step;
 
-public class StateManagerRefMax extends StateManager
+public class StateManagerRefMax implements StateManager
 {
 	private State[] State;
 
