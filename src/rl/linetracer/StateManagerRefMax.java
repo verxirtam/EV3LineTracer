@@ -28,8 +28,7 @@ public class StateManagerRefMax implements StateManager
 		}
 	}
 
-	@Override
-	public void _SetStateCount(int statecount)
+	public void setStateCount(int statecount)
 	{
 		if(statecount<=0)
 		{

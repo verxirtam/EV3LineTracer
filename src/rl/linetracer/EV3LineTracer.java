@@ -2,6 +2,7 @@ package rl.linetracer;
 
 import rl.*;
 import rl.communication.TCPServer;
+import rl.communication.message.MessageProcedure;
 
 //TODO TEST
 public class EV3LineTracer
@@ -45,16 +46,9 @@ public class EV3LineTracer
 	}
 	
 	
-	//Intervalを設定する
-	public void SetInterval(int t)
+	public MessageProcedure getReadMDPManager()
 	{
-		mdpManager._setInterval(t);
-	}
-	//StateCountを指定して、
-	//StateとConrolの配列の領域を確保する
-	public void SetStateCount(int statecount)
-	{
-		mdpManager._SetStateCount(statecount);
+		return mdpManager.getReadMDPManager();
 	}
 	//Stateを設定する
 	public void SetState(int i,double refmax,int controlcount)
@@ -319,12 +313,6 @@ public class EV3LineTracer
 	{
 		return mdpManager._GetControl(i, u);
 	}
-
-	public void setCostMax(double cost_max)
-	{
-		mdpManager._setCostMax(cost_max);
-	}
-
 	public double GetCostMax()
 	{
 		return mdpManager._getCostMax();

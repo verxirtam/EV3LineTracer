@@ -68,13 +68,6 @@ abstract public class MDPManager
 	//移行期間限定のメソッド
 	//メソッド名先頭に"_"をつけて区別する
 	///////////////////////
-	//StateCountを指定して、
-	//Conrolの配列の領域を確保する
-	final public void _SetStateCount(int statecount)
-	{
-		stateManager._SetStateCount(statecount);
-		controlManager._SetStateCount(statecount);
-	}
 	//Stateを設定する
 	final public void _SetState(int i,double refmax,int controlcount)
 	{
@@ -94,10 +87,6 @@ abstract public class MDPManager
 	{
 		return stateManager._GetState(i);
 	}
-	final public void _setCostMax(double cost_max)
-	{
-		costManager.setCostMax(cost_max);
-	}
 	final public double _getCostMax()
 	{
 		return costManager._getCostMax();
@@ -106,8 +95,5 @@ abstract public class MDPManager
 	{
 		return controlManager._getInterval();
 	}
-	final public void _setInterval(int t)
-	{
-		controlManager._setInterval(t);
-	}
+
 }

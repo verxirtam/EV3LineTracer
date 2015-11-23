@@ -1,8 +1,6 @@
 package rl.linetracer.communication;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import rl.RandomInt;
 import rl.StochasticPolicy;
 import rl.communication.message.MessageProcedure;
@@ -32,63 +30,12 @@ public class CommandSetMDP implements MessageProcedure
 	public void process(MessageInputContext input, MessageOutputContext output)
 			throws Exception
 	{
-
-		// インターバルの読み取り
-		new ReadInterval().process(input, output);
-		// 改行
-		input.skipReturn();
-
-		// CostMaxの読み取り
-		new ReadCostMax().process(input, output);
-		// 改行
-		input.skipReturn();
-
-		// StateCountの読み取り
-		ReadStateCount rsc = new ReadStateCount();
-		rsc.process(input, output);
-		// 改行
-		input.skipReturn();
-
-		// StateCountの取得
-		int statecount = rsc.getStateCount();
-
-		// StateIndex毎のcontrolcount格納用
-		ArrayList<Integer> controlcount = new ArrayList<Integer>();
-
-		// State読み取り用MessageProcedure
-		ReadState rs = new ReadState();
-		// 読み取ったStateCountの分だけ繰り返すループ
-		for (int i = 0; i < statecount; i++)
-		{
-			// rsに読み取るStateIndexを設定
-			rs.setStateIndex(i);
-			// Stateの読み取り
-			rs.process(input, output);
-			// 取得したControlCountを保持
-			controlcount.add(rs.getControlCount());
-		}
-		// Control読み取り用MessageProcedure
-		ReadControl rc = new ReadControl();
-		for (int i = 0; i < statecount; i++)
-		{
-			// rsに読み取るStateIndexを設定
-			rc.setStateIndex(i);
-			for (int j = 0; j < controlcount.get(i); j++)
-			{
-				// rsに読み取るControlIndexを設定
-				rc.setControlIndex(j);
-				// Controlの読み取り
-				rc.process(input, output);
-			}
-		}
-		// RegularPolicyの読み取り
-		ReadRegularPolicy rrp = new ReadRegularPolicy();
-		rrp.setStateCount(statecount);
-		rrp.setControlCount(controlcount);
-		rrp.process(input, output);
+		EV3LineTracer ev3 = EV3LineTracer.getInstance();
+		
+		//ev3の設定の読み込み
+		ev3.getReadMDPManager().process(input, output);
 		
 		//CurrentPolicyをRegularPolicyに設定する
-		EV3LineTracer ev3 = EV3LineTracer.getInstance();
 		ev3.SetCurrentPolicy(ev3.GetRegularPolicy());
 		
 		// 出力の設定

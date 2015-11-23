@@ -24,8 +24,7 @@ public class ControlManagerNormal implements ControlManager
 		MC.Delay(interval);
 	}
 
-	@Override
-	public void _SetStateCount(int statecount)
+	public void setStateCount(int statecount)
 	{
 		//Controlの配列の配列の宣言
 		Control=new Control[statecount][];
@@ -67,8 +66,7 @@ public class ControlManagerNormal implements ControlManager
 		return interval;
 	}
 
-	@Override
-	public void _setInterval(int t)
+	public void setInterval(int t)
 	{
 		if(t<0)
 		{
