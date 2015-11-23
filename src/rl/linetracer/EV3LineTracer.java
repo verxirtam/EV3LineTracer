@@ -50,11 +50,6 @@ public class EV3LineTracer
 	{
 		return mdpManager.getReadMDPManager();
 	}
-	//Stateを設定する
-	public void SetState(int i,double refmax,int controlcount)
-	{
-		mdpManager._SetState(i, refmax, controlcount);
-	}
 	//StateCountの取得
 	public int GetStateCount()
 	{
@@ -64,11 +59,6 @@ public class EV3LineTracer
 	public int GetControlCount(int i)
 	{
 		return mdpManager.getControlCount(i);
-	}
-	//Contolを設定する
-	public void SetControl(int i,int u,int lmotorspeed,int rmotorspeed)
-	{
-		mdpManager._SetControl(i, u, lmotorspeed, rmotorspeed);
 	}
 	//RegularPolicyの設定
 	public void SetRegularPolicy(double[][] prob)

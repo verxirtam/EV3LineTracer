@@ -45,13 +45,13 @@ public class ReadMDPManagerRefmax implements MessageProcedure
 		input.skipReturn();
 
 		// StateCountの取得
-		int statecount = rsc.getStateCount();//TODO ev3に依存しないように書き換える
+		int statecount = rsc.getStateCount();
 
 		// StateIndex毎のcontrolcount格納用
 		ArrayList<Integer> controlcount = new ArrayList<Integer>();
 
 		// State読み取り用MessageProcedure
-		ReadState rs = new ReadState();//TODO ev3に依存しないように書き換える
+		ReadState rs = new ReadState(stateManagerRefMax,controlManagerNormal);
 		// 読み取ったStateCountの分だけ繰り返すループ
 		for (int i = 0; i < statecount; i++)
 		{
@@ -63,7 +63,7 @@ public class ReadMDPManagerRefmax implements MessageProcedure
 			controlcount.add(rs.getControlCount());
 		}
 		// Control読み取り用MessageProcedure
-		ReadControl rc = new ReadControl();//TODO ev3に依存しないように書き換える
+		ReadControl rc = new ReadControl(controlManagerNormal);
 		for (int i = 0; i < statecount; i++)
 		{
 			// rsに読み取るStateIndexを設定
@@ -77,7 +77,7 @@ public class ReadMDPManagerRefmax implements MessageProcedure
 			}
 		}
 		// RegularPolicyの読み取り
-		ReadRegularPolicy rrp = new ReadRegularPolicy();//TODO ここは書き換え不要
+		ReadRegularPolicy rrp = new ReadRegularPolicy();
 		rrp.setStateCount(statecount);
 		rrp.setControlCount(controlcount);
 		rrp.process(input, output);

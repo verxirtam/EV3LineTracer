@@ -38,8 +38,7 @@ public class StateManagerRefMax implements StateManager
 
 	}
 
-	@Override
-	public void _SetState(int i, double refmax, int controlcount)
+	public void setState(int i, double refmax, int controlcount)
 	{
 		if(
 				(i<0)||

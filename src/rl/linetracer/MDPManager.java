@@ -68,17 +68,6 @@ abstract public class MDPManager
 	//移行期間限定のメソッド
 	//メソッド名先頭に"_"をつけて区別する
 	///////////////////////
-	//Stateを設定する
-	final public void _SetState(int i,double refmax,int controlcount)
-	{
-		stateManager._SetState(i,refmax,controlcount);
-		controlManager._SetControlCount(i,refmax,controlcount);
-	}
-	//Contolを設定する
-	final public void _SetControl(int i,int u,int lmotorspeed,int rmotorspeed)
-	{
-		controlManager._SetControl(i,u,lmotorspeed,rmotorspeed);
-	}
 	final public Control _GetControl(int i, int u)
 	{
 		return controlManager._GetControl(i, u);

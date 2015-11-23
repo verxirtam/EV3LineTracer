@@ -8,9 +8,9 @@ public interface ControlManager
 	void doControl(Step step, MachineControl MC);
 
 
-	void _SetControlCount(int i, double refmax, int controlcount);
+	void setControlCount(int i, int controlcount);
 
-	void _SetControl(int i, int u, int lmotorspeed, int rmotorspeed);
+	void setControl(int i, int u, int lmotorspeed, int rmotorspeed);
 
 	Control _GetControl(int i, int u);
 

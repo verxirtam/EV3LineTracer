@@ -3,7 +3,7 @@ package rl.linetracer.communication;
 import rl.communication.message.MessageProcedure;
 import rl.communication.message.context.MessageInputContext;
 import rl.communication.message.context.MessageOutputContext;
-import rl.linetracer.EV3LineTracer;
+import rl.linetracer.ControlManagerNormal;
 
 // Controlを取得する
 //<Control>::=
@@ -19,8 +19,14 @@ import rl.linetracer.EV3LineTracer;
 class ReadControl implements MessageProcedure
 {
 
-	int StateIndex;
-	int ControlIndex;
+	private ControlManagerNormal controlManagerNormal;
+	private int StateIndex;
+	private int ControlIndex;
+
+	public ReadControl(ControlManagerNormal _controlManagerNormal)
+	{
+		controlManagerNormal = _controlManagerNormal;
+	}
 
 	public void setStateIndex(int i)
 	{
@@ -37,8 +43,6 @@ class ReadControl implements MessageProcedure
 	public void process(MessageInputContext input, MessageOutputContext output)
 			throws Exception
 	{
-		// EV3LineTracer(Singleton)を取得
-		EV3LineTracer ev3 = EV3LineTracer.getInstance();
 
 		// StateIndexの検証
 		if (StateIndex != Integer.parseInt(input.nextToken()))
@@ -58,7 +62,7 @@ class ReadControl implements MessageProcedure
 		input.skipReturn();
 
 		// Controlの設定
-		ev3.SetControl(StateIndex, ControlIndex, l_motor_speed, r_motor_speed);
+		controlManagerNormal.setControl(StateIndex, ControlIndex, l_motor_speed, r_motor_speed);
 	}
 
 }

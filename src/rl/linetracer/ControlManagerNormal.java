@@ -32,13 +32,13 @@ public class ControlManagerNormal implements ControlManager
 	}
 
 	@Override
-	public void _SetControlCount(int i, double refmax, int controlcount)
+	public void setControlCount(int i, int controlcount)
 	{
 		Control[i]=new Control[controlcount];
 	}
 
 	@Override
-	public void _SetControl(int i, int u, int lmotorspeed, int rmotorspeed)
+	public void setControl(int i, int u, int lmotorspeed, int rmotorspeed)
 	{
 		if(
 				(i<0)||
