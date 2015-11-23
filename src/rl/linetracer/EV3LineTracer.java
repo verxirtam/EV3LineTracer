@@ -64,12 +64,12 @@ public class EV3LineTracer
 	//StateCountの取得
 	public int GetStateCount()
 	{
-		return mdpManager._GetStateCount();
+		return mdpManager.getStateCount();
 	}
 	//ControlCountの取得
 	public int GetControlCount(int i)
 	{
-		return mdpManager._GetControlCount(i);
+		return mdpManager.getControlCount(i);
 	}
 	//Contolを設定する
 	public void SetControl(int i,int u,int lmotorspeed,int rmotorspeed)
@@ -129,7 +129,7 @@ public class EV3LineTracer
 				previousstep.Cost=mdpManager.getCostWhenTimeOut(step, elapsed_time);//CostMax;
 			}
 			//現在のstateを求める
-			mdpManager.GetCurrentState(step, MC);
+			mdpManager.getCurrentState(step, MC);
 			previousstep.Cost=mdpManager.getCostWhenRunning(step, elapsed_time);//0.0;
 			break;
 		}
@@ -164,7 +164,7 @@ public class EV3LineTracer
 	//指定したControlに応じた行動を行う
 	public void DoControl(Step step)
 	{
-		mdpManager.DoControl(step, MC);
+		mdpManager.doControl(step, MC);
 	}
 	//Episodeを実行する準備を行う
 	//コースアウトしていたら復帰し、

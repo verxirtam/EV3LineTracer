@@ -13,7 +13,7 @@ public class ControlManagerNormal implements ControlManager
 	}
 
 	@Override
-	public void DoControl(Step step, MachineControl MC)
+	public void doControl(Step step, MachineControl MC)
 	{
 		//Controlに対応するモータの速度を取得
 		int lspeed=Control[step.State][step.Control].LMotorSpeed;

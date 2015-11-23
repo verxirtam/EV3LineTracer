@@ -12,7 +12,7 @@ public class StateManagerRefMax implements StateManager
 	}
 
 	@Override
-	public void GetCurrentState(Step step, MachineControl MC)
+	public void getCurrentState(Step step, MachineControl MC)
 	{
 		//CostMax秒に達していない場合
 		//継続してEpisodeを進める
@@ -60,7 +60,7 @@ public class StateManagerRefMax implements StateManager
 
 
 	@Override
-	public int _GetControlCount(int i)
+	public int getControlCount(int i)
 	{
 		return State[i].ControlCount;
 	}
@@ -72,7 +72,7 @@ public class StateManagerRefMax implements StateManager
 	}
 
 	@Override
-	public int _GetStateCount()
+	public int getStateCount()
 	{
 		return State.length;
 	}

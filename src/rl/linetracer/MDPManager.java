@@ -1,25 +1,39 @@
 package rl.linetracer;
 
 import rl.Step;
+import rl.communication.message.MessageProcedure;
 
 abstract public class MDPManager
 {
 	protected StateManager stateManager;
 	protected ControlManager controlManager;
 	protected CostManager costManager;
+	
+	abstract MessageProcedure getReadMDPManager();
+	
 	// 現在のStateとCostを取得する
 	// argument:
 	// Step step: 取得したStateを格納するStep
 	// Step previousstep: 取得したCostを格納するStep
-	final public void GetCurrentState(Step step, MachineControl MC)
+	final public void getCurrentState(Step step, MachineControl MC)
 	{
-		stateManager.GetCurrentState(step, MC);
+		stateManager.getCurrentState(step, MC);
 	}
 
 	// 指定したControlに応じた行動を行う
-	final public void DoControl(Step step, MachineControl MC)
+	final public void doControl(Step step, MachineControl MC)
 	{
-		controlManager.DoControl(step, MC);
+		controlManager.doControl(step, MC);
+	}
+	//StateCountの取得
+	final public int getStateCount()
+	{
+		return stateManager.getStateCount();
+	}
+	//ControlCountの取得
+	final public int getControlCount(int i)
+	{
+		return stateManager.getControlCount(i);
 	}
 	
 	/////////////////////////////////////////
@@ -76,19 +90,9 @@ abstract public class MDPManager
 	{
 		return controlManager._GetControl(i, u);
 	}
-	//ControlCountの取得
-	final public int _GetControlCount(int i)
-	{
-		return stateManager._GetControlCount(i);
-	}
 	final public State _GetState(int i)
 	{
 		return stateManager._GetState(i);
-	}
-	//StateCountの取得
-	final public int _GetStateCount()
-	{
-		return stateManager._GetStateCount();
 	}
 	final public void _setCostMax(double cost_max)
 	{
