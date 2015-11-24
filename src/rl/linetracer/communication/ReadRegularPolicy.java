@@ -14,7 +14,7 @@ import rl.linetracer.EV3LineTracer;
 //<SinglePolicy>::=
 //	<StateIndex><tab>;StateIndex
 //	<ControlIndex>;ControlIndex
-class ReadRegularPolicy implements MessageProcedure
+public class ReadRegularPolicy implements MessageProcedure
 {
 
 	private int StateCount;

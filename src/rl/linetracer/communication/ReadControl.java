@@ -16,7 +16,7 @@ import rl.linetracer.ControlManagerNormal;
 //	<ControlIndex><tab>;ControlIndex
 //	<LMotorSpeed><tab>;LMotorSpeed
 //	<RMotorSpeed>;RMotorSpeed
-class ReadControl implements MessageProcedure
+public class ReadControl implements MessageProcedure
 {
 
 	private ControlManagerNormal controlManagerNormal;

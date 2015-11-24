@@ -40,7 +40,7 @@
       <constraint>
         <height>-1</height>
         <width>-1</width>
-        <x>52</x>
+        <x>50</x>
         <y>16</y>
       </constraint>
       <sourceConnections/>
@@ -391,7 +391,7 @@
       <constraint>
         <height>-1</height>
         <width>-1</width>
-        <x>254</x>
+        <x>250</x>
         <y>16</y>
       </constraint>
       <sourceConnections>
@@ -490,7 +490,7 @@
                         <constraint>
                           <height>-1</height>
                           <width>-1</width>
-                          <x>562</x>
+                          <x>557</x>
                           <y>798</y>
                         </constraint>
                         <sourceConnections/>
@@ -523,7 +523,7 @@
                               <constraint>
                                 <height>-1</height>
                                 <width>-1</width>
-                                <x>1232</x>
+                                <x>1224</x>
                                 <y>592</y>
                               </constraint>
                               <sourceConnections>
@@ -756,7 +756,7 @@
                                     <constraint>
                                       <height>-1</height>
                                       <width>-1</width>
-                                      <x>1447</x>
+                                      <x>1439</x>
                                       <y>350</y>
                                     </constraint>
                                     <sourceConnections>
@@ -956,7 +956,7 @@
                                           <constraint>
                                             <height>-1</height>
                                             <width>-1</width>
-                                            <x>1543</x>
+                                            <x>1535</x>
                                             <y>16</y>
                                           </constraint>
                                           <sourceConnections>
@@ -1450,7 +1450,7 @@
                                           </java.beans.PropertyChangeSupport>
                                         </listeners>
                                         <visibility class="net.java.amateras.uml.classdiagram.model.Visibility$1" reference="../../../../../../../../../../../../../../../../../../../net.java.amateras.uml.classdiagram.model.ClassModel/children/net.java.amateras.uml.classdiagram.model.AttributeModel/visibility"/>
-                                        <name>_SetState</name>
+                                        <name>setState</name>
                                         <type>void</type>
                                         <params>
                                           <net.java.amateras.uml.classdiagram.model.Argument>
@@ -1646,40 +1646,6 @@
                                     </java.beans.PropertyChangeSupport>
                                   </listeners>
                                   <visibility class="net.java.amateras.uml.classdiagram.model.Visibility$4" reference="../../net.java.amateras.uml.classdiagram.model.OperationModel/visibility"/>
-                                  <name>_SetState</name>
-                                  <type>void</type>
-                                  <params>
-                                    <net.java.amateras.uml.classdiagram.model.Argument>
-                                      <name>i</name>
-                                      <type>int</type>
-                                    </net.java.amateras.uml.classdiagram.model.Argument>
-                                    <net.java.amateras.uml.classdiagram.model.Argument>
-                                      <name>refmax</name>
-                                      <type>double</type>
-                                    </net.java.amateras.uml.classdiagram.model.Argument>
-                                    <net.java.amateras.uml.classdiagram.model.Argument>
-                                      <name>controlcount</name>
-                                      <type>int</type>
-                                    </net.java.amateras.uml.classdiagram.model.Argument>
-                                  </params>
-                                  <isAbstract>false</isAbstract>
-                                  <isStatic>false</isStatic>
-                                </net.java.amateras.uml.classdiagram.model.OperationModel>
-                                <net.java.amateras.uml.classdiagram.model.OperationModel>
-                                  <backgroundColor reference="../../../../../../../../../../../../../../../../../backgroundColor"/>
-                                  <foregroundColor reference="../../../../../../../../../../../../../../../../../foregroundColor"/>
-                                  <showIcon>true</showIcon>
-                                  <parent class="net.java.amateras.uml.classdiagram.model.InterfaceModel" reference="../../.."/>
-                                  <listeners serialization="custom">
-                                    <java.beans.PropertyChangeSupport>
-                                      <default>
-                                        <source class="net.java.amateras.uml.classdiagram.model.OperationModel" reference="../../../.."/>
-                                        <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>
-                                      </default>
-                                      <null/>
-                                    </java.beans.PropertyChangeSupport>
-                                  </listeners>
-                                  <visibility class="net.java.amateras.uml.classdiagram.model.Visibility$4" reference="../../net.java.amateras.uml.classdiagram.model.OperationModel/visibility"/>
                                   <name>getControlCount</name>
                                   <type>int</type>
                                   <params>
@@ -1810,7 +1776,7 @@
                               <constraint>
                                 <height>-1</height>
                                 <width>-1</width>
-                                <x>777</x>
+                                <x>769</x>
                                 <y>592</y>
                               </constraint>
                               <sourceConnections>
@@ -2043,7 +2009,7 @@
                                     <constraint>
                                       <height>-1</height>
                                       <width>-1</width>
-                                      <x>565</x>
+                                      <x>557</x>
                                       <y>350</y>
                                     </constraint>
                                     <sourceConnections>
@@ -2376,7 +2342,7 @@
                                     <constraint>
                                       <height>-1</height>
                                       <width>-1</width>
-                                      <x>1006</x>
+                                      <x>998</x>
                                       <y>350</y>
                                     </constraint>
                                     <sourceConnections>
@@ -3202,7 +3168,7 @@
                                       <null/>
                                     </java.beans.PropertyChangeSupport>
                                   </listeners>
-                                  <visibility class="net.java.amateras.uml.classdiagram.model.Visibility$4" reference="../../../../../net.java.amateras.uml.classdiagram.model.AggregationModel/source/children/net.java.amateras.uml.classdiagram.model.OperationModel/visibility"/>
+                                  <visibility class="net.java.amateras.uml.classdiagram.model.Visibility$1" reference="../../../../../../../../../../../../../../../../net.java.amateras.uml.classdiagram.model.ClassModel/children/net.java.amateras.uml.classdiagram.model.AttributeModel/visibility"/>
                                   <name>getReadMDPManager</name>
                                   <type>MessageProcedure</type>
                                   <params/>
@@ -3559,7 +3525,7 @@
                                 <null/>
                               </java.beans.PropertyChangeSupport>
                             </listeners>
-                            <visibility class="net.java.amateras.uml.classdiagram.model.Visibility$4" reference="../../../targetConnections/net.java.amateras.uml.classdiagram.model.AggregationModel/source/children/net.java.amateras.uml.classdiagram.model.OperationModel/visibility"/>
+                            <visibility class="net.java.amateras.uml.classdiagram.model.Visibility$1" reference="../../../../../../../../../../../../../net.java.amateras.uml.classdiagram.model.ClassModel/children/net.java.amateras.uml.classdiagram.model.AttributeModel/visibility"/>
                             <name>getReadMDPManager</name>
                             <type>MessageProcedure</type>
                             <params/>
@@ -3788,78 +3754,6 @@
                               <net.java.amateras.uml.classdiagram.model.Argument>
                                 <name>elapsed_time</name>
                                 <type>double</type>
-                              </net.java.amateras.uml.classdiagram.model.Argument>
-                            </params>
-                            <isAbstract>false</isAbstract>
-                            <isStatic>false</isStatic>
-                          </net.java.amateras.uml.classdiagram.model.OperationModel>
-                          <net.java.amateras.uml.classdiagram.model.OperationModel>
-                            <backgroundColor reference="../../../../../../../../../../../../../../backgroundColor"/>
-                            <foregroundColor reference="../../../../../../../../../../../../../../foregroundColor"/>
-                            <showIcon>true</showIcon>
-                            <parent class="net.java.amateras.uml.classdiagram.model.ClassModel" reference="../../.."/>
-                            <listeners serialization="custom">
-                              <java.beans.PropertyChangeSupport>
-                                <default>
-                                  <source class="net.java.amateras.uml.classdiagram.model.OperationModel" reference="../../../.."/>
-                                  <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>
-                                </default>
-                                <null/>
-                              </java.beans.PropertyChangeSupport>
-                            </listeners>
-                            <visibility class="net.java.amateras.uml.classdiagram.model.Visibility$1" reference="../../../../../../../../../../../../../net.java.amateras.uml.classdiagram.model.ClassModel/children/net.java.amateras.uml.classdiagram.model.AttributeModel/visibility"/>
-                            <name>_SetState</name>
-                            <type>void</type>
-                            <params>
-                              <net.java.amateras.uml.classdiagram.model.Argument>
-                                <name>i</name>
-                                <type>int</type>
-                              </net.java.amateras.uml.classdiagram.model.Argument>
-                              <net.java.amateras.uml.classdiagram.model.Argument>
-                                <name>refmax</name>
-                                <type>double</type>
-                              </net.java.amateras.uml.classdiagram.model.Argument>
-                              <net.java.amateras.uml.classdiagram.model.Argument>
-                                <name>controlcount</name>
-                                <type>int</type>
-                              </net.java.amateras.uml.classdiagram.model.Argument>
-                            </params>
-                            <isAbstract>false</isAbstract>
-                            <isStatic>false</isStatic>
-                          </net.java.amateras.uml.classdiagram.model.OperationModel>
-                          <net.java.amateras.uml.classdiagram.model.OperationModel>
-                            <backgroundColor reference="../../../../../../../../../../../../../../backgroundColor"/>
-                            <foregroundColor reference="../../../../../../../../../../../../../../foregroundColor"/>
-                            <showIcon>true</showIcon>
-                            <parent class="net.java.amateras.uml.classdiagram.model.ClassModel" reference="../../.."/>
-                            <listeners serialization="custom">
-                              <java.beans.PropertyChangeSupport>
-                                <default>
-                                  <source class="net.java.amateras.uml.classdiagram.model.OperationModel" reference="../../../.."/>
-                                  <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>
-                                </default>
-                                <null/>
-                              </java.beans.PropertyChangeSupport>
-                            </listeners>
-                            <visibility class="net.java.amateras.uml.classdiagram.model.Visibility$1" reference="../../../../../../../../../../../../../net.java.amateras.uml.classdiagram.model.ClassModel/children/net.java.amateras.uml.classdiagram.model.AttributeModel/visibility"/>
-                            <name>_SetControl</name>
-                            <type>void</type>
-                            <params>
-                              <net.java.amateras.uml.classdiagram.model.Argument>
-                                <name>i</name>
-                                <type>int</type>
-                              </net.java.amateras.uml.classdiagram.model.Argument>
-                              <net.java.amateras.uml.classdiagram.model.Argument>
-                                <name>u</name>
-                                <type>int</type>
-                              </net.java.amateras.uml.classdiagram.model.Argument>
-                              <net.java.amateras.uml.classdiagram.model.Argument>
-                                <name>lmotorspeed</name>
-                                <type>int</type>
-                              </net.java.amateras.uml.classdiagram.model.Argument>
-                              <net.java.amateras.uml.classdiagram.model.Argument>
-                                <name>rmotorspeed</name>
-                                <type>int</type>
                               </net.java.amateras.uml.classdiagram.model.Argument>
                             </params>
                             <isAbstract>false</isAbstract>
@@ -4237,16 +4131,12 @@
                         </java.beans.PropertyChangeSupport>
                       </listeners>
                       <visibility class="net.java.amateras.uml.classdiagram.model.Visibility$4" reference="../../../sourceConnections/net.java.amateras.uml.classdiagram.model.AggregationModel/target/targetConnections/net.java.amateras.uml.classdiagram.model.AggregationModel/source/children/net.java.amateras.uml.classdiagram.model.OperationModel/visibility"/>
-                      <name>_SetControlCount</name>
+                      <name>setControlCount</name>
                       <type>void</type>
                       <params>
                         <net.java.amateras.uml.classdiagram.model.Argument>
                           <name>i</name>
                           <type>int</type>
-                        </net.java.amateras.uml.classdiagram.model.Argument>
-                        <net.java.amateras.uml.classdiagram.model.Argument>
-                          <name>refmax</name>
-                          <type>double</type>
                         </net.java.amateras.uml.classdiagram.model.Argument>
                         <net.java.amateras.uml.classdiagram.model.Argument>
                           <name>controlcount</name>
@@ -4271,7 +4161,7 @@
                         </java.beans.PropertyChangeSupport>
                       </listeners>
                       <visibility class="net.java.amateras.uml.classdiagram.model.Visibility$4" reference="../../../sourceConnections/net.java.amateras.uml.classdiagram.model.AggregationModel/target/targetConnections/net.java.amateras.uml.classdiagram.model.AggregationModel/source/children/net.java.amateras.uml.classdiagram.model.OperationModel/visibility"/>
-                      <name>_SetControl</name>
+                      <name>setControl</name>
                       <type>void</type>
                       <params>
                         <net.java.amateras.uml.classdiagram.model.Argument>
@@ -4728,16 +4618,12 @@
                   </java.beans.PropertyChangeSupport>
                 </listeners>
                 <visibility class="net.java.amateras.uml.classdiagram.model.Visibility$1" reference="../../../../../../../net.java.amateras.uml.classdiagram.model.ClassModel/children/net.java.amateras.uml.classdiagram.model.AttributeModel/visibility"/>
-                <name>_SetControlCount</name>
+                <name>setControlCount</name>
                 <type>void</type>
                 <params>
                   <net.java.amateras.uml.classdiagram.model.Argument>
                     <name>i</name>
                     <type>int</type>
-                  </net.java.amateras.uml.classdiagram.model.Argument>
-                  <net.java.amateras.uml.classdiagram.model.Argument>
-                    <name>refmax</name>
-                    <type>double</type>
                   </net.java.amateras.uml.classdiagram.model.Argument>
                   <net.java.amateras.uml.classdiagram.model.Argument>
                     <name>controlcount</name>
@@ -4762,7 +4648,7 @@
                   </java.beans.PropertyChangeSupport>
                 </listeners>
                 <visibility class="net.java.amateras.uml.classdiagram.model.Visibility$1" reference="../../../../../../../net.java.amateras.uml.classdiagram.model.ClassModel/children/net.java.amateras.uml.classdiagram.model.AttributeModel/visibility"/>
-                <name>_SetControl</name>
+                <name>setControl</name>
                 <type>void</type>
                 <params>
                   <net.java.amateras.uml.classdiagram.model.Argument>

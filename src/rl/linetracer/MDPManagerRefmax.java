@@ -14,7 +14,7 @@ public class MDPManagerRefmax extends MDPManager
 	}
 
 	@Override
-	MessageProcedure getReadMDPManager()
+	public MessageProcedure getReadMDPManager()
 	{
 		return new ReadMDPManagerRefmax(
 				(StateManagerRefMax)super.stateManager,

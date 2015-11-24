@@ -15,7 +15,7 @@ import rl.linetracer.communication.EV3LineTracer_1_0_Command;
 //<Message>::="MESSAGE_1.0"<endl> ;メッセージのバージョン
 //<MessageBody>;メッセージ本体
 //<endl>;空行
-class Message_1_0_Body implements MessageProcedure
+public class Message_1_0_Body implements MessageProcedure
 {
 	public static final String VERSION_STRING="MESSAGE_1.0";
 	@Override

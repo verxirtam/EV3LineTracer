@@ -9,7 +9,7 @@ abstract public class MDPManager
 	protected ControlManager controlManager;
 	protected CostManager costManager;
 	
-	abstract MessageProcedure getReadMDPManager();
+	abstract public MessageProcedure getReadMDPManager();
 	
 	// 現在のStateとCostを取得する
 	// argument:

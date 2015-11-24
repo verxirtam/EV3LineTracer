@@ -13,7 +13,7 @@ import rl.linetracer.StateManagerRefMax;
 //	<StateIndex><tab>;StateIndex
 //	<RefMax><tab>;RefMax
 //	<ControlCount>;ControlCount
-class ReadState implements MessageProcedure
+public class ReadState implements MessageProcedure
 {
 	private StateManagerRefMax stateManagerRefMax;
 	private ControlManagerNormal controlManagerNormal;

@@ -7,7 +7,7 @@ import rl.linetracer.ControlManagerNormal;
 
 // Intervalを取得する
 //<Interval>::=DIGIT
-class ReadInterval implements MessageProcedure
+public class ReadInterval implements MessageProcedure
 {
 	private ControlManagerNormal controlManagerNormal;
 	

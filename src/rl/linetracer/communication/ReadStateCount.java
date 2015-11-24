@@ -8,7 +8,7 @@ import rl.linetracer.StateManagerRefMax;
 
 // StateCountを取得する
 //<StateCount>::=DIGIT
-class ReadStateCount implements MessageProcedure
+public class ReadStateCount implements MessageProcedure
 {
 
 	private StateManagerRefMax stateManagerRefMax;
