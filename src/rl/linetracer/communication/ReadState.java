@@ -3,8 +3,7 @@ package rl.linetracer.communication;
 import rl.communication.message.MessageProcedure;
 import rl.communication.message.context.MessageInputContext;
 import rl.communication.message.context.MessageOutputContext;
-import rl.linetracer.ControlManagerNormal;
-import rl.linetracer.StateManagerRefMax;
+import rl.linetracer.MDPManagerRefmax;
 
 // Stateを取得する
 //<State>::=N(<SingleState><endl>)
@@ -15,15 +14,15 @@ import rl.linetracer.StateManagerRefMax;
 //	<ControlCount>;ControlCount
 public class ReadState implements MessageProcedure
 {
-	private StateManagerRefMax stateManagerRefMax;
-	private ControlManagerNormal controlManagerNormal;
+
+	MDPManagerRefmax mdpManagerRefmax;
+	
 	private int StateIndex;
 	private int ControlCount;
 
-	public ReadState(StateManagerRefMax _stateManagerRefMax, ControlManagerNormal _controlManagerNormal)
+	public ReadState(MDPManagerRefmax _mdpManagerRefmax)
 	{
-		stateManagerRefMax = _stateManagerRefMax;
-		controlManagerNormal = _controlManagerNormal;
+		mdpManagerRefmax = _mdpManagerRefmax;
 	}
 
 	public void setStateIndex(int stateindex)
@@ -49,8 +48,7 @@ public class ReadState implements MessageProcedure
 		input.skipReturn();
 
 		// Stateの設定
-		stateManagerRefMax.setState(StateIndex, refmax, ControlCount);
-		controlManagerNormal.setControlCount(StateIndex, ControlCount);
+		mdpManagerRefmax.setState(StateIndex, refmax, ControlCount);
 
 	}
 

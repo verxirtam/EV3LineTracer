@@ -281,10 +281,6 @@ public class EV3LineTracer
 		System.out.println("--------------------Episode End.");//TODO
 		MC.OnLED(MachineControl.LED_PATTERN_OFF);//TODO
 	}
-	public int GetInterval()
-	{
-		return mdpManager._getInterval();
-	}
 	public StochasticPolicy GetRegularPolicy()
 	{
 		return RegularPolicy;
@@ -294,19 +290,6 @@ public class EV3LineTracer
 		return CurrentPolicy;
 	}
 
-	public State GetState(int i)
-	{
-		return mdpManager._GetState(i);
-	}
-
-	public Control GetControl(int i, int u)
-	{
-		return mdpManager._GetControl(i, u);
-	}
-	public double GetCostMax()
-	{
-		return mdpManager._getCostMax();
-	}
 
 
 }

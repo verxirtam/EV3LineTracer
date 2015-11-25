@@ -3,22 +3,21 @@ package rl.linetracer.communication;
 import rl.communication.message.MessageProcedure;
 import rl.communication.message.context.MessageInputContext;
 import rl.communication.message.context.MessageOutputContext;
-import rl.linetracer.ControlManagerNormal;
-import rl.linetracer.StateManagerRefMax;
+import rl.linetracer.MDPManagerRefmax;
 
 // StateCountを取得する
 //<StateCount>::=DIGIT
 public class ReadStateCount implements MessageProcedure
 {
 
-	private StateManagerRefMax stateManagerRefMax;
-	private ControlManagerNormal controlManagerNormal;
+	private MDPManagerRefmax mdpManagerRefmax;
+	
 	private int StateCount;
 
-	public ReadStateCount(StateManagerRefMax _stateManagerRefMax, ControlManagerNormal _controlManagerNormal)
+
+	public ReadStateCount(MDPManagerRefmax _mdpManagerRefmax)
 	{
-		stateManagerRefMax = _stateManagerRefMax;
-		controlManagerNormal = _controlManagerNormal;
+		mdpManagerRefmax = _mdpManagerRefmax;
 	}
 
 	@Override
@@ -30,8 +29,8 @@ public class ReadStateCount implements MessageProcedure
 		StateCount = Integer.parseInt(input.nextToken());
 
 		// StateCountの設定
-		stateManagerRefMax.setStateCount(StateCount);
-		controlManagerNormal.setStateCount(StateCount);
+		mdpManagerRefmax.setStateCount(StateCount);
+		
 	}
 
 	public int getStateCount()

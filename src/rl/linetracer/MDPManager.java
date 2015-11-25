@@ -63,26 +63,9 @@ abstract public class MDPManager
 	}
 	
 	///////////////////////////////////////////////
-	
-	///////////////////////
-	//移行期間限定のメソッド
-	//メソッド名先頭に"_"をつけて区別する
-	///////////////////////
-	final public Control _GetControl(int i, int u)
-	{
-		return controlManager._GetControl(i, u);
-	}
-	final public State _GetState(int i)
-	{
-		return stateManager._GetState(i);
-	}
 	final public double _getCostMax()
 	{
 		return costManager._getCostMax();
-	}
-	final public int _getInterval()
-	{
-		return controlManager._getInterval();
 	}
 
 }

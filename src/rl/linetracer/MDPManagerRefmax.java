@@ -5,22 +5,70 @@ import rl.linetracer.communication.ReadMDPManagerRefmax;
 
 public class MDPManagerRefmax extends MDPManager
 {
+	private StateManagerRefMax stateManagerRefMax;
+	private ControlManagerNormal controlManagerNormal;
+	private CostManagerNextStateRef costManagerNextStateRef;
 	
 	public MDPManagerRefmax()
 	{
-		super.stateManager = new StateManagerRefMax();
-		super.controlManager = new ControlManagerNormal();
-		super.costManager = new CostManagerNextStateRef(100.0);
+		stateManagerRefMax = new StateManagerRefMax();
+		controlManagerNormal = new ControlManagerNormal();
+		costManagerNextStateRef = new CostManagerNextStateRef(100.0);
+		
+		super.stateManager = stateManagerRefMax;
+		super.controlManager = controlManagerNormal;
+		super.costManager = costManagerNextStateRef;
 	}
 
 	@Override
 	public MessageProcedure getReadMDPManager()
 	{
-		return new ReadMDPManagerRefmax(
-				(StateManagerRefMax)super.stateManager,
-				(ControlManagerNormal)super.controlManager,
-				(CostManagerNextStateRef)super.costManager
-				);
+		return new ReadMDPManagerRefmax(this);
 	}
 	
+	///////////////////////
+	//移行期間限定のメソッド
+	//メソッド名先頭に"_"をつけて区別する
+	///////////////////////
+	final public Control _GetControl(int i, int u)
+	{
+		return controlManagerNormal._GetControl(i, u);
+	}
+	final public State _GetState(int i)
+	{
+		return stateManagerRefMax._GetState(i);
+	}
+	final public int _getInterval()
+	{
+		return controlManagerNormal._getInterval();
+	}
+	
+	final public void setStateCount(int state_count)
+	{
+		stateManagerRefMax.setStateCount(state_count);
+		controlManagerNormal.setStateCount(state_count);
+	}
+
+	final public void setInterval(int interval)
+	{
+		controlManagerNormal.setInterval(interval);
+	}
+
+	final public void setCostMax(double cost_max)
+	{
+		costManagerNextStateRef.setCostMax(cost_max);
+	}
+
+	final public void setState(int stateIndex, double refmax, int controlCount)
+	{
+		stateManagerRefMax.setState(stateIndex, refmax, controlCount);
+		controlManagerNormal.setControlCount(stateIndex, controlCount);
+	}
+
+	final public void setControl(int stateIndex, int controlIndex, int l_motor_speed,
+			int r_motor_speed)
+	{
+		controlManagerNormal.setControl(stateIndex, controlIndex, l_motor_speed, r_motor_speed);
+		
+	}
 }

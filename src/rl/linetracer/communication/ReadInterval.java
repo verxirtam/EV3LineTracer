@@ -3,17 +3,17 @@ package rl.linetracer.communication;
 import rl.communication.message.MessageProcedure;
 import rl.communication.message.context.MessageInputContext;
 import rl.communication.message.context.MessageOutputContext;
-import rl.linetracer.ControlManagerNormal;
+import rl.linetracer.MDPManagerRefmax;
 
 // Intervalを取得する
 //<Interval>::=DIGIT
 public class ReadInterval implements MessageProcedure
 {
-	private ControlManagerNormal controlManagerNormal;
+	private MDPManagerRefmax mdpManagerRefmax;
 	
-	public ReadInterval(ControlManagerNormal _controlManagerNormal)
+	public ReadInterval(MDPManagerRefmax _mdpManagerRefmax)
 	{
-		controlManagerNormal = _controlManagerNormal;
+		mdpManagerRefmax = _mdpManagerRefmax;
 	}
 
 	@Override
@@ -24,7 +24,7 @@ public class ReadInterval implements MessageProcedure
 		int interval = Integer.parseInt(input.nextToken());
 		
 		//Intervalを設定
-		controlManagerNormal.setInterval(interval);
+		mdpManagerRefmax.setInterval(interval);
 		
 	}
 

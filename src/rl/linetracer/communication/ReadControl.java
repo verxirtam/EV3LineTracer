@@ -3,7 +3,7 @@ package rl.linetracer.communication;
 import rl.communication.message.MessageProcedure;
 import rl.communication.message.context.MessageInputContext;
 import rl.communication.message.context.MessageOutputContext;
-import rl.linetracer.ControlManagerNormal;
+import rl.linetracer.MDPManagerRefmax;
 
 // Controlを取得する
 //<Control>::=
@@ -19,13 +19,13 @@ import rl.linetracer.ControlManagerNormal;
 public class ReadControl implements MessageProcedure
 {
 
-	private ControlManagerNormal controlManagerNormal;
+	private MDPManagerRefmax mdpManagerRefmax;
 	private int StateIndex;
 	private int ControlIndex;
 
-	public ReadControl(ControlManagerNormal _controlManagerNormal)
+	public ReadControl(MDPManagerRefmax _mdpManagerRefmax)
 	{
-		controlManagerNormal = _controlManagerNormal;
+		mdpManagerRefmax = _mdpManagerRefmax;
 	}
 
 	public void setStateIndex(int i)
@@ -62,7 +62,7 @@ public class ReadControl implements MessageProcedure
 		input.skipReturn();
 
 		// Controlの設定
-		controlManagerNormal.setControl(StateIndex, ControlIndex, l_motor_speed, r_motor_speed);
+		mdpManagerRefmax.setControl(StateIndex, ControlIndex, l_motor_speed, r_motor_speed);
 	}
 
 }
