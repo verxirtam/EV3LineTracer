@@ -64,7 +64,7 @@ public class StateManagerRefMax implements StateManager
 	}
 
 	@Override
-	public rl.linetracer.State _GetState(int i)
+	public rl.linetracer.State _getState(int i)
 	{
 		return State[i];
 	}

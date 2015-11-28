@@ -30,15 +30,15 @@ public class MDPManagerRefmax extends MDPManager
 	//移行期間限定のメソッド
 	//メソッド名先頭に"_"をつけて区別する
 	///////////////////////
-	final public Control _GetControl(int i, int u)
+	final public Control getControl(int i, int u)
 	{
 		return controlManagerNormal._GetControl(i, u);
 	}
-	final public State _GetState(int i)
+	final public State getState(int i)
 	{
-		return stateManagerRefMax._GetState(i);
+		return stateManagerRefMax._getState(i);
 	}
-	final public int _getInterval()
+	final public int getInterval()
 	{
 		return controlManagerNormal._getInterval();
 	}

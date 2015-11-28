@@ -35,7 +35,7 @@ public class EV3LineTracer
 	{
 		MC=new MachineControl();
 		IsReady=false;
-		mdpManager = new MDPManagerRefmax();
+		mdpManager = null;
 	}
 	
 	//EV3LineTracerのインスタンスの取得
@@ -45,6 +45,15 @@ public class EV3LineTracer
 		return ev3;
 	}
 	
+	public void setMDPManager(MDPManager _mdpManager)
+	{
+		mdpManager = _mdpManager;
+	}
+	
+	public MDPManager getMDPManager()
+	{
+		return mdpManager;
+	}
 	
 	public MessageProcedure getReadMDPManager()
 	{
@@ -105,7 +114,7 @@ public class EV3LineTracer
 			break;
 		//上記以外(コースを進行中の場合)
 		default:
-			if(elapsed_time >= mdpManager._getCostMax())
+			if(elapsed_time >= mdpManager.getCostMax())
 			{
 				//CostMax秒以上経過した場合
 				//タイムアウトとして終了
@@ -289,6 +298,8 @@ public class EV3LineTracer
 	{
 		return CurrentPolicy;
 	}
+
+
 
 
 

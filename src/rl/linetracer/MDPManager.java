@@ -63,9 +63,11 @@ abstract public class MDPManager
 	}
 	
 	///////////////////////////////////////////////
-	final public double _getCostMax()
+	final public double getCostMax()
 	{
-		return costManager._getCostMax();
+		return costManager.getCostMax();
 	}
+
+
 
 }

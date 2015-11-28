@@ -9,7 +9,7 @@ public interface StateManager
 	
 	int getControlCount(int i);
 
-	State _GetState(int i);
+	State _getState(int i);
 
 	int getStateCount();
 

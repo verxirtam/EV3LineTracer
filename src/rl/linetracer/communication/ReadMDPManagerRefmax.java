@@ -82,9 +82,9 @@ public class ReadMDPManagerRefmax implements MessageProcedure
 		
 		
 		//設定した内容を返信する
-		output.writeToken(String.valueOf(mdpManagerRefmax._getInterval()));
+		output.writeToken(String.valueOf(mdpManagerRefmax.getInterval()));
 		output.newLine();
-		output.writeToken(String.valueOf(mdpManagerRefmax._getCostMax()));
+		output.writeToken(String.valueOf(mdpManagerRefmax.getCostMax()));
 		output.newLine();
 		writeState(output);
 		writeControl(output);
@@ -129,7 +129,7 @@ public class ReadMDPManagerRefmax implements MessageProcedure
 			int control_count = mdpManagerRefmax.getControlCount(i);
 			for(int u = 0; u < control_count; u++)
 			{
-				Control control = mdpManagerRefmax._GetControl(i, u);
+				Control control = mdpManagerRefmax.getControl(i, u);
 				output.writeToken(String.valueOf(i));
 				output.writeToken(String.valueOf(u));
 				output.writeToken(String.valueOf(control.LMotorSpeed));
@@ -146,7 +146,7 @@ public class ReadMDPManagerRefmax implements MessageProcedure
 		output.newLine();
 		for(int i = 0; i < state_count; i++)
 		{
-			State state = mdpManagerRefmax._GetState(i);
+			State state = mdpManagerRefmax.getState(i);
 			output.writeToken(String.valueOf(i));
 			output.writeToken(String.valueOf(state.RefMax));
 			output.writeToken(String.valueOf(state.ControlCount));
