@@ -5,19 +5,19 @@ import rl.Step;
 public class ControlManagerNormal implements ControlManager
 {
 	int interval;
-	private Control[][] Control;
+	private ControlNormal[][] control;
 	
 	public ControlManagerNormal()
 	{
-		Control = null;
+		control = null;
 	}
 
 	@Override
 	public void doControl(Step step, MachineControl MC)
 	{
 		//Controlに対応するモータの速度を取得
-		int lspeed=Control[step.State][step.Control].LMotorSpeed;
-		int rspeed=Control[step.State][step.Control].RMotorSpeed;
+		int lspeed=control[step.State][step.Control].LMotorSpeed;
+		int rspeed=control[step.State][step.Control].RMotorSpeed;
 		//取得したモータの速度で進む
 		MC.GoForward(lspeed, rspeed);
 		//Interval(msec)だけこの状態を維持
@@ -27,14 +27,14 @@ public class ControlManagerNormal implements ControlManager
 	public void setStateCount(int statecount)
 	{
 		//Controlの配列の配列の宣言
-		Control=new Control[statecount][];
+		control=new ControlNormal[statecount][];
 		
 	}
 
 	@Override
 	public void setControlCount(int i, int controlcount)
 	{
-		Control[i]=new Control[controlcount];
+		control[i]=new ControlNormal[controlcount];
 	}
 
 	@Override
@@ -42,22 +42,22 @@ public class ControlManagerNormal implements ControlManager
 	{
 		if(
 				(i<0)||
-				(i>=Control.length)||
+				(i>=control.length)||
 				(u<0)||
-				(u>=Control[i].length)
+				(u>=control[i].length)
 			)
 		{
 			throw new IllegalArgumentException();
 		}
-		Control[i][u]=new Control();
-		Control[i][u].LMotorSpeed=lmotorspeed;
-		Control[i][u].RMotorSpeed=rmotorspeed;
+		control[i][u]=new ControlNormal();
+		control[i][u].LMotorSpeed=lmotorspeed;
+		control[i][u].RMotorSpeed=rmotorspeed;
 	}
 
 	@Override
 	public Control _GetControl(int i, int u)
 	{
-		return Control[i][u];
+		return control[i][u];
 	}
 
 	@Override

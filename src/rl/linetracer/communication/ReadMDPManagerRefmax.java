@@ -8,7 +8,7 @@ import rl.StochasticPolicy;
 import rl.communication.message.MessageProcedure;
 import rl.communication.message.context.MessageInputContext;
 import rl.communication.message.context.MessageOutputContext;
-import rl.linetracer.Control;
+import rl.linetracer.ControlNormal;
 import rl.linetracer.EV3LineTracer;
 import rl.linetracer.MDPManagerRefmax;
 import rl.linetracer.StateRefMax;
@@ -129,7 +129,7 @@ public class ReadMDPManagerRefmax implements MessageProcedure
 			int control_count = mdpManagerRefmax.getControlCount(i);
 			for(int u = 0; u < control_count; u++)
 			{
-				Control control = mdpManagerRefmax.getControl(i, u);
+				ControlNormal control = (ControlNormal)mdpManagerRefmax.getControl(i, u);
 				output.writeToken(String.valueOf(i));
 				output.writeToken(String.valueOf(u));
 				output.writeToken(String.valueOf(control.LMotorSpeed));
