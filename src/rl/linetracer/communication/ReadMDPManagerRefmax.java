@@ -11,7 +11,7 @@ import rl.communication.message.context.MessageOutputContext;
 import rl.linetracer.Control;
 import rl.linetracer.EV3LineTracer;
 import rl.linetracer.MDPManagerRefmax;
-import rl.linetracer.State;
+import rl.linetracer.StateRefMax;
 
 public class ReadMDPManagerRefmax implements MessageProcedure
 {
@@ -146,7 +146,7 @@ public class ReadMDPManagerRefmax implements MessageProcedure
 		output.newLine();
 		for(int i = 0; i < state_count; i++)
 		{
-			State state = mdpManagerRefmax.getState(i);
+			StateRefMax state = (StateRefMax) (mdpManagerRefmax.getState(i));
 			output.writeToken(String.valueOf(i));
 			output.writeToken(String.valueOf(state.RefMax));
 			output.writeToken(String.valueOf(state.ControlCount));

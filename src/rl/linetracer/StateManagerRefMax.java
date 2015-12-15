@@ -4,11 +4,11 @@ import rl.Step;
 
 public class StateManagerRefMax implements StateManager
 {
-	private State[] State;
+	private StateRefMax[] state;
 
 	public StateManagerRefMax()
 	{
-		State = null;
+		state = null;
 	}
 
 	@Override
@@ -18,9 +18,9 @@ public class StateManagerRefMax implements StateManager
 		//継続してEpisodeを進める
 		double r=MC.GetReflection();
 		//測定値に対応するStateを定める
-		for(int i=1;i<State.length;i++)
+		for(int i=1;i<state.length;i++)
 		{
-			if(r<State[i].RefMax)
+			if(r<state[i].RefMax)
 			{
 				step.State=i;
 				break;
@@ -34,7 +34,7 @@ public class StateManagerRefMax implements StateManager
 		{
 			throw new IllegalArgumentException();
 		}
-		State=new State[statecount];
+		state=new StateRefMax[statecount];
 
 	}
 
@@ -42,7 +42,7 @@ public class StateManagerRefMax implements StateManager
 	{
 		if(
 				(i<0)||
-				(i>=State.length)||
+				(i>=state.length)||
 				(refmax<0.0)||
 				(refmax>1.0)||
 				(controlcount<0)
@@ -50,29 +50,26 @@ public class StateManagerRefMax implements StateManager
 		{
 			throw new IllegalArgumentException();
 		}
-		State[i]=new State();
-		State[i].RefMax=refmax;
-		State[i].ControlCount=controlcount;
-
+		state[i]=new StateRefMax(refmax, controlcount);
 	}
 
 
 	@Override
 	public int getControlCount(int i)
 	{
-		return State[i].ControlCount;
+		return state[i].ControlCount;
 	}
 
 	@Override
-	public rl.linetracer.State _getState(int i)
+	public StateRefMax _getState(int i)
 	{
-		return State[i];
+		return state[i];
 	}
 
 	@Override
 	public int getStateCount()
 	{
-		return State.length;
+		return state.length;
 	}
 
 }
