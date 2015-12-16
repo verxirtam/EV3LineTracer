@@ -2,6 +2,7 @@ package rl.communication.message;
 
 import rl.communication.message.context.MessageInputContext;
 import rl.communication.message.context.MessageOutputContext;
+import rl.linetracer.communication.EV3LineTracerCommand;
 import rl.linetracer.communication.EV3LineTracer_1_0_Command;
 
 // メッセージ本体
