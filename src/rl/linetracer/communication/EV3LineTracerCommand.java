@@ -89,15 +89,10 @@ public abstract class EV3LineTracerCommand implements MessageProcedure
 	MessageProcedure createCommand(String commandstring) throws Exception
 	{
 		//派生クラスでの独自実装のコマンドとマッチすればそれを返す。無ければnullを返す。
-		MessageProcedure mp = createAdditionalCommand();
+		MessageProcedure mp = createAdditionalCommand(commandstring);
 		if(mp != null)
 		{
 			return mp;
-		}
-		// SetMDP
-		if (commandstring.equals(CommandSetMDP.COMMAND_STRING))
-		{
-			return new CommandSetMDP(getVersionString());
 		}
 		// SetCurrentPolicy
 		if (commandstring.equals(CommandSetCurrentPolicy.COMMAND_STRING))
@@ -124,5 +119,5 @@ public abstract class EV3LineTracerCommand implements MessageProcedure
 	}
 	
 	//派生クラスでの独自実装のコマンドとマッチすればそれを返す。無ければnullを返す。
-	protected abstract MessageProcedure createAdditionalCommand();
+	protected abstract MessageProcedure createAdditionalCommand(String command_string);
 }

@@ -2,8 +2,8 @@ package rl.communication.message;
 
 import rl.communication.message.context.MessageInputContext;
 import rl.communication.message.context.MessageOutputContext;
-import rl.linetracer.communication.EV3LineTracerCommand;
 import rl.linetracer.communication.EV3LineTracer_1_0_Command;
+import rl.linetracer.communication.EV3LineTracer_1_1_Command;
 
 // メッセージ本体
 // <MessageBody>:　; 
@@ -40,6 +40,10 @@ public class Message_1_0_Body implements MessageProcedure
 		if (version_string.equals(EV3LineTracer_1_0_Command.VERSION_STRING))
 		{
 			return new EV3LineTracer_1_0_Command();
+		}
+		if (version_string.equals(EV3LineTracer_1_1_Command.VERSION_STRING))
+		{
+			return new EV3LineTracer_1_1_Command();
 		}
 		
 		throw new Exception("CommandVersion String is unmatch.");

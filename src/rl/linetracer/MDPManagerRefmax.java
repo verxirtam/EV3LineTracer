@@ -5,6 +5,7 @@ import rl.linetracer.communication.ReadMDPManagerRefmax;
 
 public class MDPManagerRefmax extends MDPManager
 {
+	public static final String MANAGER_NAME = "MDPManagerRefmax";
 	private StateManagerRefMax stateManagerRefMax;
 	private ControlManagerNormal controlManagerNormal;
 	private CostManagerNextStateRef costManagerNextStateRef;
@@ -70,5 +71,11 @@ public class MDPManagerRefmax extends MDPManager
 	{
 		controlManagerNormal.setControl(stateIndex, controlIndex, l_motor_speed, r_motor_speed);
 		
+	}
+
+	@Override
+	public String getManagerName()
+	{
+		return MANAGER_NAME;
 	}
 }

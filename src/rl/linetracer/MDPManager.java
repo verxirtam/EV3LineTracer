@@ -68,6 +68,8 @@ abstract public class MDPManager
 		return costManager.getCostMax();
 	}
 
+	abstract public String getManagerName();
+
 
 
 }
